@@ -160,7 +160,26 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
   font-size:clamp(.98rem,4vw,1.1rem)}
 .how-l li:last-child{border-bottom:1px solid hsl(var(--h) 20% 12% / .13)}
 
-.cta{padding:2vh 6vw 15vh}
+/* 特典カード。1件ずつタップできる */
+.gift{padding:12vh 6vw;color:var(--k-body)}
+.gift-t{font-family:"Noto Sans JP",sans-serif;font-weight:900;color:hsl(var(--h) 40% 10%);
+  font-size:clamp(1.08rem,4.5vw,1.46rem);margin:0 0 1.3em;text-align:center;line-height:1.6}
+.gift-l{list-style:none;margin:0;padding:0;max-width:26em;width:100%}
+.gift-l li{margin-bottom:.7em}
+.gift-l a{display:flex;align-items:center;gap:.85em;text-decoration:none;
+  background:#fff;border:1px solid hsl(var(--h) 20% 12% / .12);border-radius:.75em;
+  padding:1.05em 1.1em;box-shadow:0 2px 10px hsl(var(--h) 30% 20% / .07);
+  transition:transform .15s ease, box-shadow .15s ease}
+.gift-l a:active{transform:translateY(2px);box-shadow:0 1px 5px hsl(var(--h) 30% 20% / .1)}
+.gift-n{flex:none;width:1.9em;height:1.9em;display:grid;place-items:center;border-radius:50%;
+  background:var(--blue);color:#fff;font-family:"Noto Sans JP",sans-serif;font-weight:900;
+  font-size:.82em;letter-spacing:0}
+.gift-name{flex:1;color:hsl(var(--h) 34% 14%);font-size:clamp(.92rem,3.8vw,1.02rem);line-height:1.55}
+.gift-go{flex:none;font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:.74em;
+  color:var(--blue);letter-spacing:.04em;white-space:nowrap}
+.gift-go::after{content:" ›";font-weight:900}
+
+.cta{padding:2vh 6vw 15vh;background:hsl(var(--h) 24% 96%)}
 .cta a{display:block;width:100%;max-width:22em;text-align:center;text-decoration:none;
   background:var(--blue);color:#fff;font-family:"Noto Sans JP",sans-serif;font-weight:900;
   font-size:clamp(1rem,4.3vw,1.2rem);letter-spacing:.06em;padding:1.15em 1em;border-radius:999px;
@@ -274,12 +293,12 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
   <p class="rise"><span class="ph" style="--n:19.0">なのに動画は、全員に同じことを教える。</span></p>
 </section>
 
-<section class="read" style="background:linear-gradient(180deg,hsl(214 33% 8.5%),hsl(214 32% 8.6%))">
+<section class="read" style="background:linear-gradient(180deg,hsl(214 33% 8.5%),hsl(214 33% 8.6%))">
   <p class="rise"><span class="ph" style="--n:16.0">教えている人たちが見ているのは、</span><span class="ph" style="--n:18.0">今日できるようになるかどうかだけだ。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:20.0">半年後に子どもが試合に出ているかどうか。</span><span class="ph" style="--n:7.0">そんなことは、</span><span class="ph" style="--n:10.0">一切気にしていない。</span></p>
 </section>
 
-<section class="strike" style="background:linear-gradient(180deg,hsl(214 32% 8.6%),hsl(214 32% 8.7%))">
+<section class="strike" style="background:linear-gradient(180deg,hsl(214 33% 8.6%),hsl(214 32% 8.7%))">
   <p class="rise"><span class="ph" style="--n:8.0">気にしていたら、</span><span class="ph" style="--n:16.0">技術だけを教える動画は出さない。</span></p>
 </section>
 
@@ -397,13 +416,13 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
   <p class="rise"><span class="ph" style="--n:17.0">それでも、試合には出られなかった。</span></p>
 </section>
 
-<section class="read" style="background:linear-gradient(180deg,hsl(214 31% 10.6%),hsl(214 30% 10.7%))">
+<section class="read" style="background:linear-gradient(180deg,hsl(214 31% 10.6%),hsl(214 31% 10.7%))">
   <div class="art" style="background-image:url(images/bench_2hours.jpg)"></div>
   <p class="rise"><span class="ph" style="--n:12.0">好きで始めたはずなのに、</span><span class="ph" style="--n:16.0">試合の日が近づくと気が重くなる。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:20.5">ベンチで2時間座って、何もしないまま帰る。</span></p>
 </section>
 
-<section class="read" style="background:linear-gradient(180deg,hsl(214 30% 10.7%),hsl(214 30% 10.7%))">
+<section class="read" style="background:linear-gradient(180deg,hsl(214 31% 10.7%),hsl(214 30% 10.7%))">
   <p class="rise"><span class="ph" style="--n:5.0">そのころ、</span><span class="ph" style="--n:18.0">親は「自主練しろ」とよく言っていた。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:15.0">でも、途中から言わなくなった。</span><span class="ph" style="--n:11.0">代わりに言われたのが、</span><span class="ph" style="--n:12.0">「楽しんでこい」だった。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:19.5">そして、往復3時間の送り迎えが始まった。</span><span class="ph" style="--n:8.0">地方から、毎週。</span></p>
@@ -530,15 +549,15 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
   <p class="rise gap"><span class="ph gap" style="--n:8.0">その頃の実績は、</span><span class="ph" style="--n:16.0">中学でも高校でも守ってくれない。</span></p>
 </section>
 
-<section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 29% 12.7%),hsl(214 28% 12.8%))">
+<section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 29% 12.7%),hsl(214 29% 12.8%))">
   <p class="rise"><span class="ph" style="--n:13.0">この状況を変えられるのは、</span><span class="ph" style="--n:19.0">これを読んでくださっている親御さんが、</span><span class="ph" style="--n:8.0">お子様に思考力を</span><span class="ph" style="--n:16.0">身につけさせてあげることだけだ。</span></p>
 </section>
 
-<section class="pause" style="background:linear-gradient(180deg,hsl(214 28% 12.8%),hsl(214 28% 12.8%))">
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 29% 12.8%),hsl(214 29% 12.8%))">
   <p class="rise"><span class="ph" style="--n:21.0">では、思考力が身についたら、どうなるのか。</span></p>
 </section>
 
-<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 12.8%),hsl(214 28% 12.9%))">
+<section class="read" style="background:linear-gradient(180deg,hsl(214 29% 12.8%),hsl(214 28% 12.9%))">
   <p class="rise"><span class="ph" style="--n:3.0">まず、</span><span class="ph" style="--n:19.0">試合の中で自分で判断できるようになる。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:21.0">相手が変わっても、ポジションが変わっても、</span><span class="ph" style="--n:9.0">監督が代わっても、</span><span class="ph" style="--n:13.0">その場で何をすればいいかを</span><span class="ph" style="--n:12.0">自分で決められるからだ。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:18.0">教わった動き通りにしか動けない子は、</span><span class="ph" style="--n:14.0">状況が変わった瞬間に消える。</span><span class="ph" style="--n:9.0">思考力がある子は、</span><span class="ph" style="--n:14.0">変わったあとに合わせ直せる。</span></p>
@@ -598,13 +617,13 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
   <p class="rise gap"><span class="ph gap" style="--n:18.0">サッカーの話を、家でするようになる。</span></p>
 </section>
 
-<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 15.2%),hsl(214 27% 15.4%))">
+<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 15.2%),hsl(214 28% 15.4%))">
   <div class="art" style="background-image:url(images/laundry_full.jpg)"></div>
   <p class="rise"><span class="ph" style="--n:18.0">洗濯かごに入ってくるユニフォームは、</span><span class="ph" style="--n:8.0">毎週泥だらけだ。</span><span class="ph" style="--n:12.5">5時に起きて作るお弁当も、</span><span class="ph" style="--n:11.0">空になって返ってくる。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:11.0">そして、勝った日には、</span><span class="ph" style="--n:10.0">チームメイトと一緒に</span><span class="ph" style="--n:12.0">笑っている顔が見られる。</span></p>
 </section>
 
-<section class="turn turn--warm" style="background:linear-gradient(180deg,hsl(214 27% 15.4%),hsl(214 27% 15.6%))">
+<section class="turn turn--warm" style="background:linear-gradient(180deg,hsl(214 28% 15.4%),hsl(214 27% 15.6%))">
   <div class="art" style="background-image:url(images/bento.jpg)"></div>
   <p class="rise"><span class="ph" style="--n:9.5">それが、3年間続く。</span></p>
 </section>
@@ -655,17 +674,17 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
   <p class="rise gap"><span class="ph gap" style="--n:15.0">そのために、この文章を書いた。</span><span class="ph" style="--n:13.0">そのために、発信を始めた。</span></p>
 </section>
 
-<section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 27% 17.7%),hsl(214 26% 18.0%))">
+<section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 27% 17.7%),hsl(214 27% 18.0%))">
   <p class="rise"><span class="ph" style="--n:12.0">お子様のサッカー人生を、</span><span class="ph" style="--n:20.0">いい思い出にするか、悪い思い出にするか。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:4.0">それは、</span><span class="ph" style="--n:18.0">親御さんのきっかけの作り方で変わる。</span></p>
 </section>
 
-<section class="read" style="background:linear-gradient(180deg,hsl(214 26% 18.0%),hsl(214 26% 18.2%))">
+<section class="read" style="background:linear-gradient(180deg,hsl(214 27% 18.0%),hsl(214 27% 18.2%))">
   <p class="rise"><span class="ph" style="--n:13.0">サッカーを知らなくていい。</span><span class="ph" style="--n:13.0">技術を教えられなくていい。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:11.0">きっかけを作れるのは、</span><span class="ph" style="--n:15.0">毎日そばにいる親御さんだけだ。</span></p>
 </section>
 
-<section class="turn" style="background:linear-gradient(180deg,hsl(214 26% 18.2%),hsl(214 26% 18.4%))">
+<section class="turn" style="background:linear-gradient(180deg,hsl(214 27% 18.2%),hsl(214 26% 18.4%))">
   <p class="rise"><span class="ph" style="--n:19.0">そういう親御さんの力に、僕はなりたい。</span></p>
 </section>
 
@@ -802,28 +821,36 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
   <p class="rise"><span class="ph" style="--n:13.0">この無料個別セッションは、</span><span class="ph" style="--n:19.0">このページを読んでくださった方の中で、</span><span class="ph" style="--n:6.0">24時間以内に</span><span class="ph" style="--n:16.0">お申し込みくださった方限定です。</span></p>
 </section>
 
-<section class="how ink-dark" style="background:hsl(214 24% 96%)">
-  <h2 class="how-t">さらに、LINE登録で受け取れる10大特典</h2>
-  <ul class="how-l">
-    <li>1　親の関わり方10選</li>
-    <li>2　考え方の秘密（最短で活躍する7ステップ）</li>
-    <li>3　監督が使いたい選手を見抜く分析術</li>
-    <li>4　試合で緊張しなくなるメンタルの整え方</li>
-    <li>5　思考力の秘密</li>
-    <li>6　魔法の声かけ術</li>
-    <li>7　習慣の作り方</li>
-    <li>8　スカウトされる秘密のアピール術</li>
-    <li>9　自走する選手に育てるサポート術</li>
-    <li>10　無料個別セッション</li>
+<section class="gift" style="background:hsl(214 24% 96%)">
+  <h2 class="gift-t">今すぐ受け取れる9つの特典</h2>
+  <ul class="gift-l">
+    <li><a href="CANVA_URL_1" target="_blank" rel="noopener"><span class="gift-n">1</span><span class="gift-name">親の関わり方10選</span><span class="gift-go">受け取る</span></a></li>
+    <li><a href="CANVA_URL_2" target="_blank" rel="noopener"><span class="gift-n">2</span><span class="gift-name">考え方の秘密（最短で活躍する7ステップ）</span><span class="gift-go">受け取る</span></a></li>
+    <li><a href="CANVA_URL_3" target="_blank" rel="noopener"><span class="gift-n">3</span><span class="gift-name">監督が使いたい選手を見抜く分析術</span><span class="gift-go">受け取る</span></a></li>
+    <li><a href="CANVA_URL_4" target="_blank" rel="noopener"><span class="gift-n">4</span><span class="gift-name">試合で緊張しなくなるメンタルの整え方</span><span class="gift-go">受け取る</span></a></li>
+    <li><a href="CANVA_URL_5" target="_blank" rel="noopener"><span class="gift-n">5</span><span class="gift-name">思考力の秘密</span><span class="gift-go">受け取る</span></a></li>
+    <li><a href="CANVA_URL_6" target="_blank" rel="noopener"><span class="gift-n">6</span><span class="gift-name">魔法の声かけ術</span><span class="gift-go">受け取る</span></a></li>
+    <li><a href="CANVA_URL_7" target="_blank" rel="noopener"><span class="gift-n">7</span><span class="gift-name">習慣の作り方</span><span class="gift-go">受け取る</span></a></li>
+    <li><a href="CANVA_URL_8" target="_blank" rel="noopener"><span class="gift-n">8</span><span class="gift-name">スカウトされる秘密のアピール術</span><span class="gift-go">受け取る</span></a></li>
+    <li><a href="CANVA_URL_9" target="_blank" rel="noopener"><span class="gift-n">9</span><span class="gift-name">自走する選手に育てるサポート術</span><span class="gift-go">受け取る</span></a></li>
   </ul>
 </section>
 
-<section class="final ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
-  <p class="rise"><span class="ph" style="--n:21.0">下のボタンから、LINEで受け取ってください。</span></p>
+<section class="read ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
+  <p class="rise"><span class="ph" style="--n:16.0">タップすると、その場で開けます。</span><span class="ph" style="--n:31.0">順番は問いません。今のお子様に近いものから読んでみてください。</span></p>
+</section>
+
+<section class="pause ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
+  <p class="rise"><span class="ph" style="--n:8.0">そして、10個目。</span></p>
+</section>
+
+<section class="final final--gate ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
+  <p class="rise"><span class="ph" style="--n:14.0">お子様一人ひとりに合わせて、</span><span class="ph" style="--n:18.0">何を変えればいいのかを一緒に決める、</span><span class="ph" style="--n:13.0">無料の個別セッションです。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:29.0">24時間以内にお申し込みくださった方限定でご案内しています。</span></p>
 </section>
 
 <section class="cta">
-  <a href="LINE_URL_HERE">LINEで10大特典を受け取る<small>24時間以内のお申し込み限定</small></a>
+  <a href="SODAN_LINE_URL_HERE">無料の個別セッションに申し込む<small>24時間以内のお申し込み限定</small></a>
 </section>
 </div>
 
