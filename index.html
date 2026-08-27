@@ -1,0 +1,892 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>お子様のサッカー人生を守る 思考力完全習得パック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   世界観：夜明け前のグラウンド → 朝 → 昼
+   色相は 214（青）で固定し、明度だけを進める。
+   1本の連続したグラデーションとして全編を通す。
+   ============================================================ */
+:root{
+  --h:214;
+  --c0:hsl(var(--h) 34% 7%);    /* 夜明け前 */
+  --c1:hsl(var(--h) 32% 10%);
+  --c2:hsl(var(--h) 30% 13%);
+  --c3:hsl(var(--h) 32% 17%);
+  --c4:hsl(var(--h) 36% 23%);   /* 空が白みはじめる */
+  --c5:hsl(var(--h) 40% 32%);
+  --c6:hsl(var(--h) 42% 44%);   /* 朝 */
+  --c7:hsl(var(--h) 44% 58%);
+  --c8:hsl(var(--h) 30% 88%);
+  --c9:hsl(var(--h) 24% 96%);   /* 昼 */
+
+  --w-strong:hsl(var(--h) 20% 96%);
+  --w-body:hsl(var(--h) 14% 82%);
+  --w-dim:hsl(var(--h) 12% 58%);
+  --k-strong:hsl(var(--h) 30% 12%);
+  --k-body:hsl(var(--h) 18% 26%);
+  --blue:hsl(var(--h) 52% 44%);
+  --blue-lit:hsl(var(--h) 62% 68%);
+  --line:22.2em;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;color:var(--w-body);
+  font-family:"Shippori Mincho",serif;font-weight:500;
+  line-height:1.95;letter-spacing:.04em;
+  background:var(--c0);
+}
+.wrap{position:relative;z-index:0}
+section{position:relative;padding:13vh 6vw;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;overflow:hidden}
+p{margin:0;max-width:min(var(--line),100%);position:relative;z-index:2}
+.ph{display:block;word-break:keep-all;overflow-wrap:break-word;line-break:strict;text-wrap:nowrap}
+/* 背景の明暗が変わっても読めるよう、文字に薄い影を敷く */
+p{text-shadow:0 1px 3px hsl(var(--h) 40% 6% / .55), 0 0 1px hsl(var(--h) 40% 6% / .35)}
+.ink-mid p,.ink-dark p{text-shadow:0 1px 3px hsl(var(--h) 20% 98% / .8), 0 0 1px hsl(var(--h) 20% 98% / .6)}
+.how p,.how li,.how h2{text-shadow:none}
+
+
+@supports not (text-wrap:nowrap){.ph{white-space:nowrap}}
+.ph{font-size:min(1em, calc(var(--line) / (var(--n,20) * .535)))}
+.gap{margin-top:.85em}
+.rise{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease}
+.rise.on{opacity:1;transform:none}
+
+/* 背景写真。文字が読めるよう、必ず暗幕を重ねる */
+.art{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-size:cover;background-position:center;background-repeat:no-repeat}
+section:has(.art){padding-top:18vh;padding-bottom:18vh}
+section:has(.art) .art{
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
+section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,
+    hsl(var(--h) 34% 7% / .94) 0%,
+    hsl(var(--h) 34% 7% / .62) 20%,
+    hsl(var(--h) 34% 7% / .62) 80%,
+    hsl(var(--h) 34% 7% / .94) 100%)}
+/* 明るい側は、暗幕を弱めて写真を見せる */
+.turn:has(.art)::after,.turn--dawn:has(.art)::after,.turn--warm:has(.art)::after,
+.strike--surge:has(.art)::after,.final:has(.art)::after{
+  background:linear-gradient(180deg,
+    hsl(var(--h) 40% 18% / .86) 0%,
+    hsl(var(--h) 40% 20% / .48) 26%,
+    hsl(var(--h) 40% 20% / .48) 74%,
+    hsl(var(--h) 40% 18% / .86) 100%)}
+.how:has(.art)::after{background:linear-gradient(180deg,hsl(var(--h) 24% 96% / .97) 0%,hsl(var(--h) 24% 96% / .90) 20%,hsl(var(--h) 24% 96% / .90) 80%,hsl(var(--h) 24% 96% / .97) 100%)}
+
+/* 注意点。危険であることを見た目で示す */
+.warn{text-align:center;padding:16vh 6vw}
+.warn::before{content:"";display:block;width:clamp(46px,13vw,66px);height:clamp(46px,13vw,66px);
+  margin:0 auto 1.1em;flex:none;
+  background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 44'%3E%3Cpath d='M24 3 45 40H3z' fill='none' stroke='%23D9534F' stroke-width='3.4' stroke-linejoin='round'/%3E%3Cpath d='M24 16v11' stroke='%23D9534F' stroke-width='3.6' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='33.4' r='2.1' fill='%23D9534F'/%3E%3C/svg%3E")}
+.warn p{font-family:"Noto Sans JP",sans-serif;font-weight:900;line-height:1.62;
+  color:#F3D9D7;font-size:clamp(1.16rem,4.9vw,1.72rem)}
+.warn--body{padding:13vh 6vw;text-align:left}
+.warn--body::before{display:none}
+.warn--body p{font-family:"Shippori Mincho",serif;font-weight:500;color:#E4D3D1;
+  font-size:clamp(.95rem,3.85vw,1.12rem);line-height:1.95}
+
+/* ── 部品 ───────────────────────────── */
+.fv{min-height:100svh;text-align:center;position:relative}
+/* 横長の絵を、縦画面でも全体が見えるように上寄せで収める */
+.fv .art{-webkit-mask-image:none;mask-image:none;
+  background-size:contain;background-position:center 30%;background-repeat:no-repeat}
+@media (min-aspect-ratio:1/1){ .fv .art{background-size:cover;background-position:center} }
+.fv::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,
+    hsl(var(--h) 40% 4% / .55) 0%,
+    hsl(var(--h) 40% 4% / .14) 24%,
+    hsl(var(--h) 40% 4% / .22) 48%,
+    hsl(var(--h) 40% 5% / .80) 66%,
+    hsl(var(--h) 34% 7% / 1) 84%)}
+.fv p{position:relative;z-index:2;margin-top:auto}
+.fv{justify-content:flex-end;padding-bottom:9vh}
+.fv p{font-family:"Noto Sans JP",sans-serif;font-weight:900;line-height:1.62;letter-spacing:.02em;
+  font-size:clamp(1.3rem,5.4vw,2.4rem);color:#fff;
+  text-shadow:0 2px 14px hsl(var(--h) 40% 3% / .95), 0 0 4px hsl(var(--h) 40% 3% / .8)}
+
+.read{font-size:clamp(.95rem,3.85vw,1.12rem)}
+.pause{text-align:center;padding:17vh 6vw}
+.pause p{color:var(--w-dim);font-size:clamp(1.02rem,4.3vw,1.28rem);line-height:1.85}
+.strike{text-align:center}
+.strike p{font-family:"Noto Sans JP",sans-serif;font-weight:900;line-height:1.62;
+  color:var(--w-strong);font-size:clamp(1.14rem,4.8vw,1.68rem)}
+.strike--core{}
+.strike--core p{color:#fff}
+.strike--surge{}
+.strike--surge p{color:#fff}
+.pit{text-align:center;padding:16vh 6vw}
+.pit p{font-family:"Noto Sans JP",sans-serif;font-weight:900;line-height:1.6;
+  color:var(--w-strong);font-size:clamp(1.18rem,5vw,1.8rem)}
+.pit--vow p{color:var(--blue-lit)}
+.turn{text-align:center;padding:15vh 6vw}
+.turn p{font-family:"Noto Sans JP",sans-serif;font-weight:700;line-height:1.7;
+  color:var(--w-strong);font-size:clamp(1.08rem,4.5vw,1.5rem)}
+.turn--dawn{}
+.turn--warm{}
+.turn--warm p{color:#fff}
+.final{text-align:center;padding:15vh 6vw}
+.final p{font-family:"Noto Sans JP",sans-serif;font-weight:700;color:#fff;
+  font-size:clamp(1.06rem,4.4vw,1.46rem);line-height:1.8}
+.final--gate{}
+.final--gate p{color:var(--k-strong)}
+
+.how{color:var(--k-body);padding:11vh 6vw}
+
+/* 背景が明るいセクションは、文字を濃くする（コントラスト比4.5以上） */
+.ink-mid p{color:hsl(var(--h) 26% 13%)}
+.ink-mid.strike p,.ink-mid.turn p,.ink-mid.pit p,.ink-mid.final p{color:hsl(var(--h) 36% 9%)}
+.ink-mid.pause p{color:hsl(var(--h) 20% 22%)}
+.ink-dark p{color:hsl(var(--h) 28% 15%)}
+.ink-dark.strike p,.ink-dark.turn p,.ink-dark.pit p,.ink-dark.final p{color:hsl(var(--h) 36% 9%)}
+.ink-dark.pause p{color:hsl(var(--h) 22% 24%)}
+/* 写真つきセクションは暗幕がかかるので、白のまま */
+.ink-mid:has(.art) p,.ink-dark:has(.art) p{color:var(--w-body)}
+.ink-mid:has(.art).strike p,.ink-dark:has(.art).strike p,
+.ink-mid:has(.art).turn p,.ink-dark:has(.art).turn p,
+.ink-mid:has(.art).final p,.ink-dark:has(.art).final p{color:#fff}
+.how .art{opacity:.09}
+.how-t{font-family:"Noto Sans JP",sans-serif;font-weight:900;color:hsl(var(--h) 40% 10%);
+  font-size:clamp(1.08rem,4.5vw,1.46rem);margin:0 0 1.4em;text-align:center;line-height:1.6;
+  position:relative;z-index:2}
+.how-l{list-style:none;margin:0;padding:0;max-width:24em;width:100%;position:relative;z-index:2}
+.how-l li{color:hsl(var(--h) 30% 16%);border-top:1px solid hsl(var(--h) 20% 12% / .16);padding:1.1em .2em;line-height:1.8;
+  font-size:clamp(.98rem,4vw,1.1rem)}
+.how-l li:last-child{border-bottom:1px solid hsl(var(--h) 20% 12% / .13)}
+
+.cta{padding:2vh 6vw 15vh}
+.cta a{display:block;width:100%;max-width:22em;text-align:center;text-decoration:none;
+  background:var(--blue);color:#fff;font-family:"Noto Sans JP",sans-serif;font-weight:900;
+  font-size:clamp(1rem,4.3vw,1.2rem);letter-spacing:.06em;padding:1.15em 1em;border-radius:999px;
+  box-shadow:0 10px 30px hsl(var(--h) 52% 44% / .3);transition:transform .2s ease}
+.cta a:active{transform:translateY(2px)}
+.cta small{display:block;font-weight:400;font-size:.76em;letter-spacing:.02em;margin-top:.5em;opacity:.9}
+
+@media (min-width:768px){
+  section{padding:15vh 8vw}
+  .read{font-size:1.08rem}
+  .art svg{width:min(46vw,560px)}
+}
+@media (prefers-reduced-motion:reduce){ .rise{opacity:1;transform:none;transition:none} }
+</style>
+<noscript><style>.rise{opacity:1;transform:none}</style></noscript>
+
+<div class="wrap">
+<section class="fv" style="background:hsl(214 34% 7.0%)">
+  <div class="art" style="background-image:url(images/fv_d.jpg)"></div>
+  <p><span class="ph" style="--n:20.0">お子様のサッカー人生を狂わせているのは、</span><span class="ph" style="--n:12.0">YouTubeやSNSで「技術」を</span><span class="ph" style="--n:10.0">教えている人たちだ。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 34% 7.1%),hsl(214 34% 7.2%))">
+  <div class="art" style="background-image:url(images/bench.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:5.0">土曜の朝。</span><span class="ph" style="--n:7.0">スタンドから、</span><span class="ph" style="--n:19.0">ベンチの端に座っているお子様が見える。</span><span class="ph" style="--n:9.0">ビブスを着たまま、</span><span class="ph" style="--n:15.0">ずっとピッチのほうを見ている。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:7.0">前半が終わる。</span><span class="ph" style="--n:14.5">ハーフタイムに2人が呼ばれて、</span><span class="ph" style="--n:10.0">ピッチに入っていく。</span><span class="ph" style="--n:18.0">後半が始まり、20分が過ぎたところで、</span><span class="ph" style="--n:9.5">また1人が呼ばれる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:4.0">そして、</span><span class="ph" style="--n:19.0">お子様は最後までピッチに立つことなく、</span><span class="ph" style="--n:8.0">試合終了と同時に</span><span class="ph" style="--n:18.0">「ピーピーッピー」と審判の笛が鳴る。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 34% 7.2%),hsl(214 34% 7.3%))">
+  <p class="rise"><span class="ph" style="--n:16.0">うちの子が試合に出られないのは、</span><span class="ph" style="--n:14.0">私がサッカー未経験だからだ。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:21.0">私が教えてあげられないのが、いけないんだ。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 34% 7.3%),hsl(214 34% 7.3%))">
+  <div class="art" style="background-image:url(images/stand_worry.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:21.0">そう思って、自分を責めてきたかもしれない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:16.0">サッカーをやったことがないから、</span><span class="ph" style="--n:20.0">練習を見ても何が足りないのか分からない。</span><span class="ph" style="--n:12.0">声のかけ方も分からない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:12.0">試合に出ている子の親は、</span><span class="ph" style="--n:15.0">家でちゃんと教えてあげているの</span><span class="ph" style="--n:7.0">だろうと思う。</span></p>
+</section>
+
+<section class="strike" style="background:linear-gradient(180deg,hsl(214 34% 7.3%),hsl(214 34% 7.4%))">
+  <p class="rise"><span class="ph" style="--n:6.0">でも、違う。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 34% 7.4%),hsl(214 34% 7.5%))">
+  <div class="art" style="background-image:url(images/watch_practice.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:16.0">お子様が試合に出られない原因は、</span><span class="ph" style="--n:21.0">親御さんがサッカーを知らないことではない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:14.0">お子様に才能がないからでも、</span><span class="ph" style="--n:15.0">練習量が足りないからでもない。</span></p>
+</section>
+
+<section class="pit" style="background:linear-gradient(180deg,hsl(214 34% 7.5%),hsl(214 33% 7.6%))">
+  <p class="rise"><span class="ph" style="--n:17.0">お子様をベンチに座らせているのは、</span><span class="ph" style="--n:12.0">YouTubeやSNSで「技術」を</span><span class="ph" style="--n:10.0">教えている人たちだ。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 33% 7.6%),hsl(214 33% 7.7%))">
+  <p class="rise"><span class="ph" style="--n:9.0">言いすぎだろうか。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 33% 7.7%),hsl(214 33% 7.8%))">
+  <div class="art" style="background-image:url(images/trick_practice.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:14.0">では、思い出してみてほしい。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">お子様が動画を見て覚えた技を、</span><span class="ph" style="--n:19.0">試合で一度でも見たことがあるだろうか。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:10.0">足の裏で引くターン。</span><span class="ph" style="--n:9.0">股を抜くドリブル。</span><span class="ph" style="--n:9.0">無回転のシュート。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:11.0">家の前ではできている。</span><span class="ph" style="--n:10.0">練習でも見せている。</span></p>
+</section>
+
+<section class="strike" style="background:linear-gradient(180deg,hsl(214 33% 7.8%),hsl(214 33% 7.9%))">
+  <p class="rise"><span class="ph" style="--n:16.0">でも、試合では一度も出ていない。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 33% 7.9%),hsl(214 33% 8.0%))">
+  <div class="art" style="background-image:url(images/phone.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:14.0">たとえば、こういう家がある。</span><span class="ph" style="--n:21.0">そこには、サッカーが大好きな男の子がいた。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:8.0">学校から帰ると、</span><span class="ph" style="--n:14.0">ランドセルを玄関に置いたまま</span><span class="ph" style="--n:12.0">ボールを持って出ていく。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:12.0">夜は電気を消した部屋で、</span><span class="ph" style="--n:19.0">布団の中から画面の光だけが漏れている。</span><span class="ph" style="--n:13.0">同じ10秒を戻しては再生し、</span><span class="ph" style="--n:17.0">指で止めて足の裏の向きを確かめる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:19.0">次の日、練習が始まる前の駐車場の隅で、</span><span class="ph" style="--n:15.0">覚えた動きを一人で試している。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:5.0">そのうち、</span><span class="ph" style="--n:20.0">動画と同じ形でボールを引けるようになる。</span><span class="ph" style="--n:18.0">友達に見せると「うまっ」と言われて、</span><span class="ph" style="--n:18.0">家に帰ってからも同じ動きを繰り返す。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 33% 8.0%),hsl(214 33% 8.0%))">
+  <p class="rise"><span class="ph" style="--n:13.0">でも、技術がうまくなれば、</span><span class="ph" style="--n:14.0">サッカーは楽しいのだろうか。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 33% 8.0%),hsl(214 33% 8.1%))">
+  <div class="art" style="background-image:url(images/phone_scroll.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:10.0">想像してみてほしい。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:17.0">お子様が流れてきた練習を真似して、</span><span class="ph" style="--n:18.0">誰よりも派手な技ができるようになる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:21.0">でも派手な技は、試合で使えるものではない。</span><span class="ph" style="--n:13.0">そして本人は、気づかない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:14.5">1週間後、試合には出られない。</span><span class="ph" style="--n:10.5">3週間後、またベンチ。</span><span class="ph" style="--n:17.5">1ヶ月後、たまたま試合に出られたが、</span><span class="ph" style="--n:14.0">半年後にはまたベンチだった。</span></p>
+</section>
+
+<section class="strike" style="background:linear-gradient(180deg,hsl(214 33% 8.1%),hsl(214 33% 8.2%))">
+  <p class="rise"><span class="ph" style="--n:12.0">技術がうまくなるだけで、</span><span class="ph" style="--n:17.0">サッカー人生は楽しめるのだろうか。</span></p>
+</section>
+
+<section class="turn" style="background:linear-gradient(180deg,hsl(214 33% 8.2%),hsl(214 33% 8.3%))">
+  <p class="rise"><span class="ph" style="--n:21.0">サッカーが楽しいのは、綺麗事を抜きにして、</span><span class="ph" style="--n:16.0">試合で活躍し続けられている時だ。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 33% 8.3%),hsl(214 33% 8.4%))">
+  <div class="art" style="background-image:url(images/coach_shout.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:4.0">でも今、</span><span class="ph" style="--n:18.0">YouTubeやSNSに溢れている技術動画は、</span><span class="ph" style="--n:17.0">そこから遠ざけるものになっている。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:12.0">なぜなら、教えているのは</span><span class="ph" style="--n:20.0">「こういう時は、こうやれ」だけだからだ。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:17.0">相手が変わり、ポジションが変わり、</span><span class="ph" style="--n:21.0">監督が代われば、監督が求めるものも変わる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:12.0">覚えた動きが出せるのは、</span><span class="ph" style="--n:17.0">まったく同じ場面が来たときだけだ。</span><span class="ph" style="--n:15.0">そして同じ場面は二度と来ない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:19.0">スタメンを取るために何を直すべきかも、</span><span class="ph" style="--n:10.0">子どもによって違う。</span></p>
+</section>
+
+<section class="strike" style="background:linear-gradient(180deg,hsl(214 33% 8.4%),hsl(214 33% 8.5%))">
+  <p class="rise"><span class="ph" style="--n:19.0">なのに動画は、全員に同じことを教える。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 33% 8.5%),hsl(214 32% 8.6%))">
+  <p class="rise"><span class="ph" style="--n:16.0">教えている人たちが見ているのは、</span><span class="ph" style="--n:18.0">今日できるようになるかどうかだけだ。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:11.0">半年後に子どもが試合に</span><span class="ph" style="--n:12.0">出ているかどうかなんて、</span><span class="ph" style="--n:10.0">一切気にしていない。</span></p>
+</section>
+
+<section class="strike" style="background:linear-gradient(180deg,hsl(214 32% 8.6%),hsl(214 32% 8.7%))">
+  <p class="rise"><span class="ph" style="--n:8.0">気にしていたら、</span><span class="ph" style="--n:16.0">技術だけを教える動画は出さない。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 32% 8.7%),hsl(214 32% 8.7%))">
+  <p class="rise"><span class="ph" style="--n:19.0">なぜなら、技術を先に身につけた先には、</span><span class="ph" style="--n:20.0">最悪の未来が待っていることがあるからだ。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 32% 8.7%),hsl(214 32% 8.8%))">
+  <p class="rise"><span class="ph" style="--n:9.5">僕が中学1年のとき、</span><span class="ph" style="--n:11.0">めちゃくちゃ強い代だと</span><span class="ph" style="--n:13.0">噂されるような世代にいた。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">全国を優勝するようなチームに、</span><span class="ph" style="--n:11.0">僕たちは7対1で勝った。</span><span class="ph" style="--n:14.0">どの相手とやっても5対0以上。</span><span class="ph" style="--n:13.5">10対0で終わることもあった。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:17.0">負けることを知らないチームだった。</span></p>
+</section>
+
+<section class="pit" style="background:linear-gradient(180deg,hsl(214 32% 8.8%),hsl(214 32% 8.9%))">
+  <p class="rise"><span class="ph" style="--n:21.5">でも、あの代の8割は、高校で姿を消していく。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 32% 8.9%),hsl(214 32% 9.0%))">
+  <p class="rise"><span class="ph" style="--n:4.0">なぜか。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 32% 9.0%),hsl(214 32% 9.1%))">
+  <p class="rise"><span class="ph" style="--n:7.0">能力と技術が、</span><span class="ph" style="--n:15.0">先に身につきすぎていたからだ。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">用意ドンで圧勝できる足の速さ。</span><span class="ph" style="--n:11.0">五分五分のボールに体を</span><span class="ph" style="--n:13.0">当てれば奪えるフィジカル。</span><span class="ph" style="--n:17.0">少しミスをしてもカバーできる技術。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:17.0">考えなくても、勝ててしまっていた。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 32% 9.1%),hsl(214 32% 9.2%))">
+  <p class="rise"><span class="ph" style="--n:21.0">でも、体格や技術の差は簡単に追いつかれる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:16.0">中学の途中から体の差はなくなり、</span><span class="ph" style="--n:12.0">用意ドンで前に出られず、</span><span class="ph" style="--n:12.0">当たっても奪えなくなる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:13.0">今まで通っていたプレーが、</span><span class="ph" style="--n:15.0">そのまま止められるようになる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:10.0">勝てなくなるたびに、</span><span class="ph" style="--n:16.0">僕たちの前には大きな壁ができた。</span></p>
+</section>
+
+<section class="pit" style="background:linear-gradient(180deg,hsl(214 32% 9.2%),hsl(214 32% 9.3%))">
+  <p class="rise"><span class="ph" style="--n:17.0">勝てないときにどうすればいいかを、</span><span class="ph" style="--n:14.0">一度も考えたことがなかった。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 32% 9.3%),hsl(214 32% 9.4%))">
+  <p class="rise"><span class="ph" style="--n:12.0">どうやったら勝てるのか。</span><span class="ph" style="--n:19.0">どうやったら負けないようにできるのか。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:16.0">考えずとも勝ててしまっていた分、</span><span class="ph" style="--n:8.0">壁は大きかった。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:13.5">そして、8割が高校で消えた。</span></p>
+</section>
+
+<section class="strike" style="background:linear-gradient(180deg,hsl(214 32% 9.4%),hsl(214 32% 9.4%))">
+  <p class="rise"><span class="ph" style="--n:21.0">これが、技術を先に身につけた子が陥る罠だ。</span></p>
+</section>
+
+<section class="turn" style="background:linear-gradient(180deg,hsl(214 32% 9.4%),hsl(214 32% 9.5%))">
+  <p class="rise"><span class="ph" style="--n:8.0">必要だったのは、</span><span class="ph" style="--n:21.0">どうすればスタメンになれるかを自分で考え、</span><span class="ph" style="--n:17.0">ミスを一度で終わらせて繰り返さず、</span><span class="ph" style="--n:21.0">言われなくても自分で練習を続ける力だった。</span></p>
+</section>
+
+<section class="strike" style="background:linear-gradient(180deg,hsl(214 32% 9.5%),hsl(214 32% 9.6%))">
+  <p class="rise"><span class="ph" style="--n:18.0">つまり、僕たちには思考力がなかった。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 32% 9.6%),hsl(214 31% 9.7%))">
+  <p class="rise"><span class="ph" style="--n:16.0">考えなくても勝ててしまう環境に、</span><span class="ph" style="--n:9.0">ずっといたからだ。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:20.0">そして今、同じことが別の形で起きている。</span><span class="ph" style="--n:8.0">技術動画の中で。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:20.0">技術だけを教える動画は、答えを先に渡す。</span><span class="ph" style="--n:20.0">だから、自分で考える場面が一度も来ない。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 31% 9.7%),hsl(214 31% 9.8%))">
+  <p class="rise"><span class="ph" style="--n:19.0">思考力がないまま続けると、どうなるか。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 31% 9.8%),hsl(214 31% 9.9%))">
+  <p class="rise"><span class="ph" style="--n:19.0">来週も、その次の週も、同じ土曜が来る。</span><span class="ph" style="--n:20.0">スタメンに名前がないまま、季節が変わる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:12.0">あんなに好きだったのに、</span><span class="ph" style="--n:13.0">練習に行く準備が遅くなる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:7.0">帰ってきても、</span><span class="ph" style="--n:15.0">もうボールを持って外に出ない。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 31% 9.9%),hsl(214 31% 10.0%))">
+  <p class="rise"><span class="ph" style="--n:20.0">では、思考力が身についたら、どうなるか。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 31% 10.0%),hsl(214 31% 10.1%))">
+  <div class="art" style="background-image:url(images/goal.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:7.0">半年後の土曜。</span><span class="ph" style="--n:18.0">去年の大会で負けた相手との、公式戦。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:20.0">0対0のまま、残り時間が少なくなっていく。</span><span class="ph" style="--n:15.0">あなたはスタンドから見ている。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">ゴール前に走り込んだお子様が、</span><span class="ph" style="--n:16.0">最後の一歩でスライディングしなが</span><span class="ph" style="--n:8.0">ら右足を伸ばす。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">スパイクの先がボールに触れて、</span><span class="ph" style="--n:18.0">ボールがゴールネットの内側で跳ねる。</span></p>
+</section>
+
+<section class="strike strike--surge" style="background:linear-gradient(180deg,hsl(214 31% 10.1%),hsl(214 31% 10.1%))">
+  <p class="rise"><span class="ph" style="--n:6.5">1点が入った。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 31% 10.1%),hsl(214 31% 10.2%))">
+  <div class="art" style="background-image:url(images/celebrate.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:13.0">チームメイトが走ってきて、</span><span class="ph" style="--n:11.0">お子様と手を合わせる。</span><span class="ph" style="--n:9.0">パチンと音が鳴る。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:14.0">輪の真ん中に、お子様がいる。</span></p>
+</section>
+
+<section class="turn turn--warm" style="background:linear-gradient(180deg,hsl(214 31% 10.2%),hsl(214 31% 10.3%))">
+  <p class="rise"><span class="ph" style="--n:17.0">僕がサッカーで一番覚えているのも、</span><span class="ph" style="--n:6.0">この瞬間だ。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 31% 10.3%),hsl(214 31% 10.4%))">
+  <div class="art" style="background-image:url(images/empty_ground_dusk.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:17.0">「こんなにボールが蹴れない選手は、</span><span class="ph" style="--n:8.0">お前くらいだ。」</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:12.0">薄暗くなったグラウンドに</span><span class="ph" style="--n:11.0">照明が灯りはじめた頃、</span><span class="ph" style="--n:17.0">中学のコーチの声が、そこに残った。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:14.0">チームで一番、背が低かった。</span><span class="ph" style="--n:10.0">一番、足が遅かった。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 31% 10.4%),hsl(214 31% 10.5%))">
+  <div class="art" style="background-image:url(images/bike_dawn.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:15.0">それでも、うまくなりたかった。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:7.5">朝5時に起きて、</span><span class="ph" style="--n:19.0">誰もいないグラウンドでボールを蹴った。</span><span class="ph" style="--n:8.0">片道40分の道を、</span><span class="ph" style="--n:14.0">自転車で20分に縮めて通った。</span><span class="ph" style="--n:10.0">全員が帰ったあとも、</span><span class="ph" style="--n:14.0">最後の一人になるまで残った。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:16.0">リフティングは、誰よりも続いた。</span><span class="ph" style="--n:7.0">足元の技術も、</span><span class="ph" style="--n:15.0">チームの中では上のほうだった。</span></p>
+</section>
+
+<section class="pit" style="background:linear-gradient(180deg,hsl(214 31% 10.5%),hsl(214 31% 10.6%))">
+  <p class="rise"><span class="ph" style="--n:17.0">それでも、試合には出られなかった。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 31% 10.6%),hsl(214 30% 10.7%))">
+  <div class="art" style="background-image:url(images/bench_2hours.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:12.0">好きで始めたはずなのに、</span><span class="ph" style="--n:16.0">試合の日が近づくと気が重くなる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:20.5">ベンチで2時間座って、何もしないまま帰る。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 30% 10.7%),hsl(214 30% 10.7%))">
+  <p class="rise"><span class="ph" style="--n:5.0">そのころ、</span><span class="ph" style="--n:18.0">親は「自主練しろ」とよく言っていた。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">でも、途中から言わなくなった。</span><span class="ph" style="--n:11.0">代わりに言われたのが、</span><span class="ph" style="--n:12.0">「楽しんでこい」だった。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:19.5">そして、往復3時間の送り迎えが始まった。</span><span class="ph" style="--n:8.0">地方から、毎週。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 30% 10.7%),hsl(214 30% 10.8%))">
+  <p class="rise"><span class="ph" style="--n:11.0">何が足りないんだろう。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 30% 10.8%),hsl(214 30% 10.9%))">
+  <div class="art" style="background-image:url(images/think_pitch.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:15.0">プロになっていく選手と、自分。</span><span class="ph" style="--n:15.0">何が違うのかを、ずっと考えた。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:16.0">体格でも、足の速さでもなかった。</span><span class="ph" style="--n:10.0">練習量でもなかった。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:14.0">僕より練習していない選手が、</span><span class="ph" style="--n:8.0">試合に出ていた。</span></p>
+</section>
+
+<section class="turn turn--dawn" style="background:linear-gradient(180deg,hsl(214 30% 10.9%),hsl(214 30% 11.0%))">
+  <div class="art" style="background-image:url(images/dawn.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:16.0">足りなかったのは、思考力だった。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 30% 11.0%),hsl(214 30% 11.1%))">
+  <p class="rise"><span class="ph" style="--n:11.0">自分の強みが何なのか。</span><span class="ph" style="--n:16.0">監督が自分に何を求めているのか。</span><span class="ph" style="--n:16.0">そこに対して、今日何をやるのか。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:18.0">それを、一度も考えたことがなかった。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:11.0">言われたことをやって、</span><span class="ph" style="--n:16.0">足りないと言われたら量を増やす。</span><span class="ph" style="--n:12.0">それしかしてこなかった。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 30% 11.1%),hsl(214 30% 11.2%))">
+  <div class="art" style="background-image:url(images/pro_debut.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:10.0">思考力が身について、</span><span class="ph" style="--n:12.5">2ヶ月でスタメンを取った。</span><span class="ph" style="--n:17.0">そして17歳で、プロの公式戦に出た。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:12.5">高校生活で3試合に出場し、</span><span class="ph" style="--n:14.0">1ゴール1アシストを記録した。</span></p>
+</section>
+
+<section class="strike" style="background:linear-gradient(180deg,hsl(214 30% 11.2%),hsl(214 30% 11.3%))">
+  <p class="rise"><span class="ph" style="--n:13.0">変えたのは、技術ではない。</span><span class="ph" style="--n:18.0">ただ一つ、思考力が身についただけだ。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 30% 11.3%),hsl(214 30% 11.4%))">
+  <div class="art" style="background-image:url(images/prefectural.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:13.0">チームで10年ぶりに県大会に</span><span class="ph" style="--n:10.0">出場した日のことを、</span><span class="ph" style="--n:8.0">今でも思い出す。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:19.0">最後の笛が鳴った瞬間の、スタンドの音。</span><span class="ph" style="--n:14.0">走ってきたチームメイトの顔。</span></p>
+</section>
+
+<section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 30% 11.4%),hsl(214 30% 11.4%))">
+  <p class="rise"><span class="ph" style="--n:13.0">あれをベンチで見ていたら、</span><span class="ph" style="--n:13.0">この思い出は残っていない。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 30% 11.4%),hsl(214 30% 11.5%))">
+  <p class="rise"><span class="ph" style="--n:21.0">もし、親が関わり方を変えてくれなかったら。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 30% 11.5%),hsl(214 30% 11.6%))">
+  <p class="rise"><span class="ph" style="--n:17.0">「自主練しろ」と言われ続けたまま、</span><span class="ph" style="--n:21.0">努力しても報われない日が続いていたと思う。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:14.0">自分の良さも分からないまま、</span><span class="ph" style="--n:15.0">努力すること自体が嫌になって、</span><span class="ph" style="--n:15.0">どこかでサッカーをやめていた。</span></p>
+</section>
+
+<section class="strike" style="background:linear-gradient(180deg,hsl(214 30% 11.6%),hsl(214 30% 11.7%))">
+  <p class="rise"><span class="ph" style="--n:18.0">そして、これはお子様にも起こりうる。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 30% 11.7%),hsl(214 29% 11.8%))">
+  <div class="art" style="background-image:url(images/bench_far.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:18.0">試合に出られない週が、何ヶ月も続く。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:18.0">練習には行っている。声も出している。</span><span class="ph" style="--n:9.0">家に帰ってからも、</span><span class="ph" style="--n:16.0">動画を見て技術の練習をしている。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:17.0">それでも、メンバー表に名前がない。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 29% 11.8%),hsl(214 29% 11.9%))">
+  <div class="art" style="background-image:url(images/silent_boy.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:16.0">そのうち、練習の準備が遅くなる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:17.5">「今日、何時から?」と聞かなくなる。</span><span class="ph" style="--n:20.0">出かける前に、玄関でしばらく座っている。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">試合の日は、朝から口数が減る。</span><span class="ph" style="--n:8.0">会場に着いても、</span><span class="ph" style="--n:15.0">アップの列の後ろのほうにいる。</span><span class="ph" style="--n:18.5">そしてベンチに座って、2時間が終わる。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 29% 11.9%),hsl(214 29% 12.0%))">
+  <p class="rise"><span class="ph" style="--n:8.0">それが半年続く。</span><span class="ph" style="--n:4.5">1年続く。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:9.0">技術は増えている。</span><span class="ph" style="--n:12.0">去年できなかった動きが、</span><span class="ph" style="--n:12.0">できるようになっている。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:13.0">でも、出番だけが増えない。</span></p>
+</section>
+
+<section class="pit" style="background:linear-gradient(180deg,hsl(214 29% 12.0%),hsl(214 29% 12.1%))">
+  <div class="art" style="background-image:url(images/ball_alone.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:19.0">そして、あんなに好きだったサッカーを、</span><span class="ph" style="--n:9.0">嫌いになっていく。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 29% 12.1%),hsl(214 29% 12.1%))">
+  <div class="art" style="background-image:url(images/genkan.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:9.0">ある日、言われる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:12.0">「もう、やめようかな。」</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 29% 12.1%),hsl(214 29% 12.2%))">
+  <div class="art" style="background-image:url(images/empty_saturday.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:15.0">やめた次の週から、週末が空く。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:20.0">車に積みっぱなしだった折りたたみ椅子を、</span><span class="ph" style="--n:5.0">片付ける。</span><span class="ph" style="--n:15.5">5時に起きて作っていたお弁当を、</span><span class="ph" style="--n:7.0">作らなくなる。</span><span class="ph" style="--n:20.0">泥だらけのソックスを、もう洗わなくなる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:18.0">ベランダに干していたユニフォームが、</span><span class="ph" style="--n:5.0">なくなる。</span></p>
+</section>
+
+<section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 29% 12.2%),hsl(214 29% 12.3%))">
+  <div class="art" style="background-image:url(images/stand.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:4.0">そして、</span><span class="ph" style="--n:20.0">グラウンドでボールを追いかけている姿を、</span><span class="ph" style="--n:10.0">もう見られなくなる。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 29% 12.3%),hsl(214 29% 12.4%))">
+  <p class="rise"><span class="ph" style="--n:19.0">小学校から続けた10年が、そこで終わる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:20.0">いい思い出が、一つも残らないまま終わる。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 29% 12.4%),hsl(214 29% 12.5%))">
+  <div class="art" style="background-image:url(images/mother_watch.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:12.0">こうなってしまったのは、</span><span class="ph" style="--n:17.0">私がサッカーを知らなかったからだ。</span><span class="ph" style="--n:7.0">私が、ちゃんと</span><span class="ph" style="--n:18.0">サポートしてあげられなかったからだ。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:13.0">そう思う日が、来てしまう。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 29% 12.5%),hsl(214 29% 12.6%))">
+  <div class="art" style="background-image:url(images/bench_2hours.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:15.0">これは、脅しでも煽りでもない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:16.0">僕自身が、試合に出られない時期に</span><span class="ph" style="--n:14.0">サッカーを嫌いになりかけた。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:12.0">好きで始めたはずなのに、</span><span class="ph" style="--n:12.0">練習に行くのが嫌だった。</span><span class="ph" style="--n:16.0">悔しすぎて、眠れない日もあった。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 29% 12.6%),hsl(214 29% 12.7%))">
+  <p class="rise"><span class="ph" style="--n:10.0">そこで熱量が切れて、</span><span class="ph" style="--n:17.0">やめていった選手を何人も見てきた。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:11.0">小学校の頃に活躍して、</span><span class="ph" style="--n:19.0">県内で名前が知られていた選手もそうだ。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:8.0">その頃の実績は、</span><span class="ph" style="--n:16.0">中学でも高校でも守ってくれない。</span></p>
+</section>
+
+<section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 29% 12.7%),hsl(214 28% 12.8%))">
+  <p class="rise"><span class="ph" style="--n:13.0">この状況を変えられるのは、</span><span class="ph" style="--n:19.0">これを読んでくださっている親御さんが、</span><span class="ph" style="--n:10.0">お子様に思考力を身に</span><span class="ph" style="--n:14.0">つけさせてあげることだけだ。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 28% 12.8%),hsl(214 28% 12.8%))">
+  <p class="rise"><span class="ph" style="--n:21.0">では、思考力が身についたら、どうなるのか。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 12.8%),hsl(214 28% 12.9%))">
+  <p class="rise"><span class="ph" style="--n:3.0">まず、</span><span class="ph" style="--n:19.0">試合の中で自分で判断できるようになる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:21.0">相手が変わっても、ポジションが変わっても、</span><span class="ph" style="--n:9.0">監督が代わっても、</span><span class="ph" style="--n:12.0">その場で何をすればいいか</span><span class="ph" style="--n:13.0">を自分で決められるからだ。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:18.0">教わった動き通りにしか動けない子は、</span><span class="ph" style="--n:14.0">状況が変わった瞬間に消える。</span><span class="ph" style="--n:9.0">思考力がある子は、</span><span class="ph" style="--n:14.0">変わったあとに合わせ直せる。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 12.9%),hsl(214 28% 13.0%))">
+  <p class="rise"><span class="ph" style="--n:17.0">次に、ミスがそこで終わらなくなる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:17.0">失敗したあとに「次はどうするか」を</span><span class="ph" style="--n:11.0">自分で決められるので、</span><span class="ph" style="--n:14.0">同じミスを二度繰り返さない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:21.0">監督から見れば、一度言えば直る選手になる。</span><span class="ph" style="--n:17.0">一度言えば直る選手は、使いやすい。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 13.0%),hsl(214 28% 13.3%))">
+  <p class="rise"><span class="ph" style="--n:4.0">そして、</span><span class="ph" style="--n:18.0">スタメンから外れても戻ってこられる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:19.0">何が足りなかったのかを自分で見つけて、</span><span class="ph" style="--n:12.0">そこだけを直せるからだ。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:11.0">外れたまま終わる子と、</span><span class="ph" style="--n:14.0">外れても戻ってくる子の差は、</span><span class="ph" style="--n:8.0">ここで生まれる。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 13.3%),hsl(214 28% 13.5%))">
+  <p class="rise"><span class="ph" style="--n:14.0">うまくいかない時期が来ても、</span><span class="ph" style="--n:13.0">サッカーを嫌いにならない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:20.0">自分でどうにかできると分かっているから、</span><span class="ph" style="--n:17.0">壁が来ても、そこで終わりにしない。</span></p>
+</section>
+
+<section class="turn" style="background:linear-gradient(180deg,hsl(214 28% 13.5%),hsl(214 28% 13.7%))">
+  <p class="rise"><span class="ph" style="--n:17.0">つまり、もう心配しなくてよくなる。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 13.7%),hsl(214 28% 14.0%))">
+  <p class="rise"><span class="ph" style="--n:15.0">今週も出られないんじゃないか。</span><span class="ph" style="--n:17.0">このまま辞めてしまうんじゃないか。</span><span class="ph" style="--n:11.0">私が何かしてあげないと</span><span class="ph" style="--n:11.0">いけないんじゃないか。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:17.0">そう思いながら週末を迎えることが、</span><span class="ph" style="--n:5.0">なくなる。</span></p>
+</section>
+
+<section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 28% 14.0%),hsl(214 28% 14.2%))">
+  <div class="art" style="background-image:url(images/stand_bright.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:5.0">代わりに、</span><span class="ph" style="--n:20.0">スタンドで純粋に見ていられるようになる。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 14.2%),hsl(214 28% 14.5%))">
+  <p class="rise"><span class="ph" style="--n:14.0">サッカーを知らなくてもいい。</span><span class="ph" style="--n:14.0">技術を教えられなくてもいい。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:18.0">お子様が自分で考えて、自分で動いて、</span><span class="ph" style="--n:12.0">自分で出番を取ってくる。</span><span class="ph" style="--n:17.0">親御さんは、それを見ていればいい。</span></p>
+</section>
+
+<section class="turn turn--warm" style="background:linear-gradient(180deg,hsl(214 28% 14.5%),hsl(214 28% 14.7%))">
+  <div class="art" style="background-image:url(images/team_line.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:11.0">そして、週末が変わる。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 14.7%),hsl(214 28% 14.9%))">
+  <div class="art" style="background-image:url(images/starting.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:19.0">試合の日。監督がスタメンを読み上げる。</span><span class="ph" style="--n:19.0">11人の名前の中に、お子様の名前がある。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:13.0">ピッチへ走っていく背中を、</span><span class="ph" style="--n:11.0">スタンドから見ている。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">前半、逆サイドから走り込んで、</span><span class="ph" style="--n:16.5">相手を1人かわしてシュートを打つ。</span><span class="ph" style="--n:18.0">入らなくても、味方が拍手をしている。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 14.9%),hsl(214 28% 15.2%))">
+  <div class="art" style="background-image:url(images/boy_talking.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:20.0">試合が終わって、車に乗り込んだお子様が、</span><span class="ph" style="--n:12.0">聞いてもいないのに今日の</span><span class="ph" style="--n:10.0">プレーの話を始める。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:21.0">「あの場面、もっと早く出しとけばよかった」</span><span class="ph" style="--n:15.0">「次はあそこで裏に走ってみる」</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:18.0">サッカーの話を、家でするようになる。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 28% 15.2%),hsl(214 27% 15.4%))">
+  <div class="art" style="background-image:url(images/laundry_full.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:18.0">洗濯かごに入ってくるユニフォームは、</span><span class="ph" style="--n:8.0">毎週泥だらけだ。</span><span class="ph" style="--n:12.5">5時に起きて作るお弁当も、</span><span class="ph" style="--n:11.0">空になって返ってくる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:11.0">そして、勝った日には、</span><span class="ph" style="--n:10.0">チームメイトと一緒に</span><span class="ph" style="--n:12.0">笑っている顔が見られる。</span></p>
+</section>
+
+<section class="turn turn--warm" style="background:linear-gradient(180deg,hsl(214 27% 15.4%),hsl(214 27% 15.6%))">
+  <div class="art" style="background-image:url(images/bento.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:9.5">それが、3年間続く。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 27% 15.6%),hsl(214 27% 15.9%))">
+  <div class="art" style="background-image:url(images/lastwhistle.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:8.0">中学最後の大会。</span><span class="ph" style="--n:11.0">最後の笛が鳴った瞬間、</span><span class="ph" style="--n:15.0">ピッチの真ん中にお子様がいる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:16.0">勝っても、負けても、そこにいる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:8.0">その日のことを、</span><span class="ph" style="--n:14.0">10年後もお子様は覚えている。</span></p>
+</section>
+
+<section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 27% 15.9%),hsl(214 27% 16.1%))">
+  <p class="rise"><span class="ph" style="--n:15.0">サッカーが、いい思い出になる。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 27% 16.1%),hsl(214 27% 16.3%))">
+  <p class="rise"><span class="ph" style="--n:16.0">実際に思考力を身につけた選手は、</span><span class="ph" style="--n:7.0">変わっている。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:21.0">僕は受講生に、技術をほぼ一切教えていない。</span><span class="ph" style="--n:12.0">教えているのは思考力と、</span><span class="ph" style="--n:20.0">親御さんが思考力を育てる関わり方だけだ。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:10.5">それで受講生の99%が、</span><span class="ph" style="--n:15.5">3ヶ月でカテゴリーを上げている。</span><span class="ph" style="--n:18.0">市のトレセンに受からなかった選手が、</span><span class="ph" style="--n:18.0">県のトレセンに呼ばれるまでになった。</span></p>
+</section>
+
+<section class="turn" style="background:linear-gradient(180deg,hsl(214 27% 16.3%),hsl(214 27% 16.6%))">
+  <p class="rise"><span class="ph" style="--n:6.0">だから僕は、</span><span class="ph" style="--n:16.5">今のSNSがどうしても納得できない。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 27% 16.6%),hsl(214 27% 16.8%))">
+  <div class="art" style="background-image:url(images/trick_practice.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:21.0">技術を教えるだけの動画が、毎日流れてくる。</span><span class="ph" style="--n:8.0">それを見た子が、</span><span class="ph" style="--n:14.0">家の前で同じ動きを練習する。</span><span class="ph" style="--n:15.0">できるようになる。嬉しくなる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:13.0">でも、試合には出られない。</span></p>
+</section>
+
+<section class="strike" style="background:linear-gradient(180deg,hsl(214 27% 16.8%),hsl(214 27% 17.0%))">
+  <p class="rise"><span class="ph" style="--n:6.0">僕は本気で、</span><span class="ph" style="--n:14.0">これが子どものサッカー人生を</span><span class="ph" style="--n:11.0">狂わせると思っている。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 27% 17.0%),hsl(214 27% 17.3%))">
+  <p class="rise"><span class="ph" style="--n:5.0">僕は親に、</span><span class="ph" style="--n:18.0">たくさんのきっかけを作ってもらった。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:14.0">「自主練しろ」から「楽しんで</span><span class="ph" style="--n:12.0">こい」に変わったことも、</span><span class="ph" style="--n:11.5">往復3時間の送り迎えも、</span><span class="ph" style="--n:11.0">全部がきっかけだった。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:4.0">だから、</span><span class="ph" style="--n:18.0">あのサッカー人生を送ることができた。</span></p>
+</section>
+
+<section class="turn turn--warm" style="background:linear-gradient(180deg,hsl(214 27% 17.3%),hsl(214 27% 17.5%))">
+  <p class="rise"><span class="ph" style="--n:15.0">今度は、僕がその役をやりたい。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 27% 17.5%),hsl(214 27% 17.7%))">
+  <p class="rise"><span class="ph" style="--n:19.0">今サッカーを頑張っている子どもたちと、</span><span class="ph" style="--n:19.0">どうすればいいか分からない親御さんに、</span><span class="ph" style="--n:14.0">本気で届けたいと思っている。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">そのために、この文章を書いた。</span><span class="ph" style="--n:13.0">そのために、発信を始めた。</span></p>
+</section>
+
+<section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 27% 17.7%),hsl(214 26% 18.0%))">
+  <p class="rise"><span class="ph" style="--n:12.0">お子様のサッカー人生を、</span><span class="ph" style="--n:20.0">いい思い出にするか、悪い思い出にするか。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:4.0">それは、</span><span class="ph" style="--n:18.0">親御さんのきっかけの作り方で変わる。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 26% 18.0%),hsl(214 26% 18.2%))">
+  <p class="rise"><span class="ph" style="--n:13.0">サッカーを知らなくていい。</span><span class="ph" style="--n:13.0">技術を教えられなくていい。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:11.0">きっかけを作れるのは、</span><span class="ph" style="--n:15.0">毎日そばにいる親御さんだけだ。</span></p>
+</section>
+
+<section class="turn" style="background:linear-gradient(180deg,hsl(214 26% 18.2%),hsl(214 26% 18.4%))">
+  <p class="rise"><span class="ph" style="--n:19.0">そういう親御さんの力に、僕はなりたい。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 26% 18.4%),hsl(190 28% 16.0%))">
+  <p class="rise"><span class="ph" style="--n:12.0">ここまで読んでくださり、</span><span class="ph" style="--n:11.0">ありがとうございます。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(190 28% 16.0%),hsl(8 26% 13.0%))">
+  <p class="rise"><span class="ph" style="--n:20.0">ここまで読んでくださっている方は、きっと</span><span class="ph" style="--n:15.0">何とかして今の状況を変えたい、</span><span class="ph" style="--n:16.0">お子様のために頑張ってあげたい、</span><span class="ph" style="--n:21.0">そう思われている親御さんなのだと思います。</span></p>
+</section>
+
+<section class="warn" style="background:linear-gradient(180deg,hsl(8 26% 13.0%),hsl(8 26% 12.2%))">
+  <p class="rise"><span class="ph" style="--n:9.5">ただ、たった1つだけ</span><span class="ph" style="--n:9.0">注意点があります。</span></p>
+</section>
+
+<section class="warn warn--body" style="background:linear-gradient(180deg,hsl(8 26% 12.2%),hsl(8 26% 11.3%))">
+  <p class="rise"><span class="ph" style="--n:21.0">思考力を身につけさせてあげたいと思っても、</span><span class="ph" style="--n:14.0">身につけられないパターンが、</span><span class="ph" style="--n:9.5">たった1つあります。</span></p>
+</section>
+
+<section class="warn" style="background:linear-gradient(180deg,hsl(8 26% 11.3%),hsl(8 26% 10.5%))">
+  <p class="rise"><span class="ph" style="--n:4.0">それは、</span><span class="ph" style="--n:15.0">自己流で進めてしまうことです。</span></p>
+</section>
+
+<section class="warn warn--body" style="background:linear-gradient(180deg,hsl(8 26% 10.5%),hsl(8 26% 11.3%))">
+  <p class="rise"><span class="ph" style="--n:19.0">なぜなら、間違った方向に進み続けても、</span><span class="ph" style="--n:11.0">自分たちではそのズレに</span><span class="ph" style="--n:15.0">気づくことができないからです。</span></p>
+</section>
+
+<section class="warn warn--body" style="background:linear-gradient(180deg,hsl(8 26% 11.3%),hsl(8 26% 12.2%))">
+  <p class="rise"><span class="ph" style="--n:9.0">料理でも同じです。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:18.0">食べてみたら、なんだか美味しくない。</span><span class="ph" style="--n:18.0">本当の原因は「塩が足りない」だった。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:6.0">でも自分では</span><span class="ph" style="--n:18.0">「甘さが足りないんだ」と思い込んで、</span><span class="ph" style="--n:7.0">砂糖を入れる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:11.0">まだ美味しくならない。</span><span class="ph" style="--n:10.0">さらに砂糖を入れる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:13.0">改善しているつもりなのに、</span><span class="ph" style="--n:8.0">美味しい料理から</span><span class="ph" style="--n:12.0">どんどん遠ざかっていく。</span></p>
+</section>
+
+<section class="warn" style="background:linear-gradient(180deg,hsl(8 26% 12.2%),hsl(8 26% 13.0%))">
+  <p class="rise"><span class="ph" style="--n:10.0">改善していることと、</span><span class="ph" style="--n:15.0">正しい方向に進んでいることは、</span><span class="ph" style="--n:4.0">別です。</span></p>
+</section>
+
+<section class="warn warn--body" style="background:linear-gradient(180deg,hsl(8 26% 13.0%),hsl(190 28% 16.0%))">
+  <p class="rise"><span class="ph" style="--n:11.0">サッカーでも同じです。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">差に気づく。やることを決める。</span><span class="ph" style="--n:11.0">実際に試す。振り返る。</span><span class="ph" style="--n:14.0">この流れ自体は、やっている。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:17.0">でも、最初の「差」がズレていたら、</span><span class="ph" style="--n:15.0">その後の全部がズレていきます。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(190 28% 16.0%),hsl(214 26% 20.4%))">
+  <p class="rise"><span class="ph" style="--n:13.0">実際、トップレベルの選手も</span><span class="ph" style="--n:15.0">自己流だけで成長しているわけで</span><span class="ph" style="--n:7.0">はありません。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:14.0">久保建英選手は小学生の頃から</span><span class="ph" style="--n:18.0">専門トレーナーと身体づくりを継続し、</span><span class="ph" style="--n:7.0">18歳当時には、</span><span class="ph" style="--n:18.0">21歳で迎えるワールドカップを見据えた</span><span class="ph" style="--n:14.5">「6年計画」で進めていました。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:17.0">自分の感覚だけで進めるのではなく、</span><span class="ph" style="--n:13.0">「何を・いつ・どう伸ばすか</span><span class="ph" style="--n:12.0">」を設計していたのです。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 26% 20.4%),hsl(214 26% 20.6%))">
+  <p class="rise"><span class="ph" style="--n:13.0">では、どうしたらいいのか。</span></p>
+</section>
+
+<section class="turn turn--dawn" style="background:linear-gradient(180deg,hsl(214 26% 20.6%),hsl(214 26% 20.7%))">
+  <p class="rise"><span class="ph" style="--n:17.0">その道を実際に乗り越えてきた人に、</span><span class="ph" style="--n:9.0">相談することです。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 26% 20.7%),hsl(214 26% 20.9%))">
+  <p class="rise"><span class="ph" style="--n:15.0">ただし、サッカーに詳しい人なら</span><span class="ph" style="--n:15.0">誰でもいいわけではありません。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:19.0">お子様が目指している姿を実際に経験し、</span><span class="ph" style="--n:13.0">その道を乗り越えてきた人。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:18.0">そういう人に相談することが大切です。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 26% 20.9%),hsl(214 26% 21.1%))">
+  <p class="rise"><span class="ph" style="--n:4.0">そして、</span><span class="ph" style="--n:21.0">最初に方向を決めれば終わりではありません。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:10.0">実際にやってみると、</span><span class="ph" style="--n:15.0">上手くいかないこともあります。</span><span class="ph" style="--n:14.0">正しい方向からズレたときに、</span><span class="ph" style="--n:9.0">修正してもらえる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:12.0">これが、とても大切です。</span></p>
+</section>
+
+<section class="pause" style="background:linear-gradient(180deg,hsl(214 26% 21.1%),hsl(214 26% 21.3%))">
+  <p class="rise"><span class="ph" style="--n:11.0">「大切なのは分かった。</span><span class="ph" style="--n:21.5">でも、うちの子の場合は何を変えればいいの?」</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 26% 21.3%),hsl(214 26% 21.5%))">
+  <p class="rise"><span class="ph" style="--n:8.0">相談したいけど、</span><span class="ph" style="--n:14.0">近くに相談できる人がいない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:21.0">そう感じている方が、ほとんどだと思います。</span></p>
+</section>
+
+<section class="turn turn--warm" style="background:linear-gradient(180deg,hsl(214 26% 21.5%),hsl(214 26% 21.6%))">
+  <p class="rise"><span class="ph" style="--n:17.0">だからこそ、そんな親御さんの力に、</span><span class="ph" style="--n:14.0">僕はなりたいと思っています。</span></p>
+</section>
+
+<section class="read" style="background:linear-gradient(180deg,hsl(214 26% 21.6%),hsl(214 26% 21.8%))">
+  <p class="rise"><span class="ph" style="--n:18.0">何を変えればいいのか分からないまま、</span><span class="ph" style="--n:11.0">悩み続けてほしくない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:18.0">だから今回、そのきっかけを届ける側に</span><span class="ph" style="--n:12.0">なりたいと思っています。</span></p>
+</section>
+
+<section class="final final--gate" style="background:linear-gradient(180deg,hsl(214 26% 21.8%),hsl(214 26% 22.0%))">
+  <p class="rise"><span class="ph" style="--n:6.0">そこで今回、</span><span class="ph" style="--n:20.0">普段は有料で行っている個別セッションを、</span><span class="ph" style="--n:19.0">このページを読んでくださった方限定で、</span><span class="ph" style="--n:10.0">無料でご案内します。</span></p>
+</section>
+
+<section class="read ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 22.0%) 0%,hsl(214 24% 96%) 16%,hsl(214 24% 96%) 100%)">
+  <p class="rise"><span class="ph" style="--n:12.0">この個別セッションでは、</span><span class="ph" style="--n:13.0">親御さんの関わり方によって</span><span class="ph" style="--n:13.0">お子さんの思考力を伸ばし、</span><span class="ph" style="--n:8.0">最短でスタメンを</span><span class="ph" style="--n:15.0">獲得するためのロードマップを、</span><span class="ph" style="--n:9.0">一緒に設計します。</span></p>
+</section>
+
+<section class="how ink-dark" style="background:hsl(214 24% 96%)">
+  <h2 class="how-t">個別セッションで明確にする4つ</h2>
+  <ul class="how-l">
+    <li>01　今のお子さんが、なぜスタメンを取れていないのか</li>
+    <li>02　スタメン獲得のために、何を変える必要があるのか</li>
+    <li>03　そのために、どんな思考力が必要なのか</li>
+    <li>04　その思考力を伸ばすために、親御さんがどう関わるのか</li>
+  </ul>
+</section>
+
+<section class="read ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
+  <p class="rise"><span class="ph" style="--n:11.0">ただし、誰でも何人でも</span><span class="ph" style="--n:16.0">ご案内できるわけではありません。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">一人ひとりのお子さんに合わせて</span><span class="ph" style="--n:14.0">ロードマップを設計するには、</span><span class="ph" style="--n:8.0">時間が必要です。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:10.0">試合映像も確認する。</span><span class="ph" style="--n:10.0">今の課題も整理する。</span><span class="ph" style="--n:17.0">親御さんの関わり方も一緒に考える。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:4.0">だから、</span><span class="ph" style="--n:18.0">一人ひとりと向き合う必要があります。</span></p>
+</section>
+
+<section class="strike ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
+  <p class="rise"><span class="ph" style="--n:7.0">だから今回は、</span><span class="ph" style="--n:14.0">本気で今を変えたい親御さんに</span><span class="ph" style="--n:11.0">限定してご案内します。</span></p>
+</section>
+
+<section class="read ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
+  <div class="art" style="background-image:url(images/parent_hope.jpg)"></div>
+  <p class="rise"><span class="ph" style="--n:13.0">何とか今の状況を変えたい。</span><span class="ph" style="--n:18.0">スタメンとして試合に出る姿を見たい。</span><span class="ph" style="--n:18.0">親としての関わり方も変えていきたい。</span><span class="ph" style="--n:20.0">お子さんと一緒に本気で成長していきたい。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:17.0">そんな方には、全力で向き合います。</span></p>
+</section>
+
+<section class="how ink-dark" style="background:hsl(214 24% 96%)">
+  <h2 class="how-t">個別セッション参加者限定の2つの特典</h2>
+  <ul class="how-l">
+    <li>特典①　お子様の試合映像を個別に分析します。<br>実際のプレーを見ながら、今どこに課題があるのかを整理します。</li>
+    <li>特典②　お子様専用『親子でできる練習メニュー』を作成します。<br>今のお子さんに必要なことに合わせて、親子で取り組める内容を作成します。</li>
+  </ul>
+</section>
+
+<section class="final final--gate ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
+  <p class="rise"><span class="ph" style="--n:13.0">この無料個別セッションは、</span><span class="ph" style="--n:19.0">このページを読んでくださった方の中で、</span><span class="ph" style="--n:6.0">24時間以内に</span><span class="ph" style="--n:16.0">お申し込みくださった方限定です。</span></p>
+</section>
+
+<section class="how ink-dark" style="background:hsl(214 24% 96%)">
+  <h2 class="how-t">さらに、LINE登録で受け取れる10大特典</h2>
+  <ul class="how-l">
+    <li>1　親の関わり方10選</li>
+    <li>2　考え方の秘密（最短で活躍する7ステップ）</li>
+    <li>3　監督が使いたい選手を見抜く分析術</li>
+    <li>4　試合で緊張しなくなるメンタルの整え方</li>
+    <li>5　思考力の秘密</li>
+    <li>6　魔法の声かけ術</li>
+    <li>7　習慣の作り方</li>
+    <li>8　スカウトされる秘密のアピール術</li>
+    <li>9　自走する選手に育てるサポート術</li>
+    <li>10　無料個別セッション</li>
+  </ul>
+</section>
+
+<section class="final ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
+  <p class="rise"><span class="ph" style="--n:21.0">下のボタンから、LINEで受け取ってください。</span></p>
+</section>
+
+<section class="cta">
+  <a href="LINE_URL_HERE">LINEで10大特典を受け取る<small>24時間以内のお申し込み限定</small></a>
+</section>
+</div>
+
+<script>
+// 1) 行が版面に収まらなければ、その行だけ級数を下げる（実測・保険）
+function fitLines(){
+  document.querySelectorAll('.ph').forEach(el=>{
+    el.style.fontSize='';
+    const sec = el.closest('section');
+    const cs = getComputedStyle(sec);
+    const avail = sec.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    const w = Math.min(el.parentElement.clientWidth, avail);
+    let guard = 0;
+    while(el.scrollWidth > w && guard < 14){
+      const cur = parseFloat(getComputedStyle(el).fontSize);
+      el.style.fontSize = (cur * 0.97) + 'px';
+      guard++;
+    }
+  });
+}
+if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fitLines); }
+window.addEventListener('load', fitLines);
+let rt; window.addEventListener('resize', ()=>{ clearTimeout(rt); rt=setTimeout(fitLines,150); });
+
+// 2) 背景と文字のコントラストを実測し、足りなければ文字色を寄せる
+function rel(c){
+  const m=c.match(/\d+(\.\d+)?/g); if(!m) return 0;
+  const [r,g,b]=m.slice(0,3).map(Number).map(v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)});
+  return 0.2126*r+0.7152*g+0.0722*b;
+}
+function fixContrast(){
+  document.querySelectorAll('section').forEach(sec=>{
+    if(sec.querySelector('.art')) return;          // 写真つきは暗幕があるので対象外
+    const cs=getComputedStyle(sec);
+    const bgs=cs.backgroundImage.match(/rgba?\([^)]*\)/g) || [cs.backgroundColor];
+    if(!bgs || !bgs[0]) return;
+    // グラデーションの両端で判定し、どちらでも読める色にする
+    const ls=bgs.map(rel);
+    const bgMin=Math.min.apply(null,ls), bgMax=Math.max.apply(null,ls);
+    const bgL=(bgMin+bgMax)/2;
+    sec.querySelectorAll('p,li,h2').forEach(el=>{
+      const fgL=rel(getComputedStyle(el).color);
+      const r1=(Math.max(fgL,bgMin)+0.05)/(Math.min(fgL,bgMin)+0.05);
+      const r2=(Math.max(fgL,bgMax)+0.05)/(Math.min(fgL,bgMax)+0.05);
+      const ratio=Math.min(r1,r2);
+      if(ratio>=4.5) return;
+      // 背景が明るければ濃い色、暗ければ明るい色へ寄せる
+      el.style.color = bgL > 0.22 ? 'hsl(214 34% 10%)' : 'hsl(214 16% 94%)';
+      if(el.tagName==='H2' || el.closest('.strike,.turn,.pit,.final,.warn')){
+        el.style.color = bgL > 0.22 ? 'hsl(214 40% 7%)' : '#fff';
+      }
+    });
+  });
+}
+window.addEventListener('load', fixContrast);
+if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fixContrast); }
+
+// 3) スクロールで浮かび上がる
+document.querySelectorAll('.rise').forEach(el=>{
+  const r=el.getBoundingClientRect();
+  if(r.top < window.innerHeight) el.classList.add('on');
+});
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rise:not(.on)').forEach(el=>io.observe(el));
+</script>
