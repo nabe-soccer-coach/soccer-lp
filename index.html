@@ -960,21 +960,28 @@ function fixContrast(){
 window.addEventListener('load', fixContrast);
 if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fixContrast); }
 
-// 3) 24時間のカウントダウン（★このページに初めて到達した時刻から）
+// 3) 24時間のカウントダウン（★ボタンが画面に入った時点から開始）
 (function(){
   const KEY='soccer_lp_deadline';
   const els=document.querySelectorAll('[data-timer]');
   if(!els.length) return;
-  let dl=0;
+
+  let dl=0, started=false, ticking=false;
   try{ dl=parseInt(localStorage.getItem(KEY)||'0',10); }catch(e){}
-  if(!dl || isNaN(dl) || dl - Date.now() > 24*3600*1000){
-    dl=Date.now()+24*3600*1000;
-    try{ localStorage.setItem(KEY,String(dl)); }catch(e){}
-  }
+  if(dl && !isNaN(dl) && dl - Date.now() <= 24*3600*1000){ started=true; }
+  else { dl=0; }
+
   function pad(n){ return n<10 ? '0'+n : String(n); }
-  function tick(){
+
+  function render(){
     const left=dl-Date.now();
     els.forEach(el=>{
+      if(!started){
+        el.querySelector('[data-h]').textContent='24';
+        el.querySelector('[data-m]').textContent='00';
+        el.querySelector('[data-s]').textContent='00';
+        return;
+      }
       if(left<=0){
         el.classList.add('is-over');
         el.querySelector('.timer-l').textContent='お申し込み受付';
@@ -986,9 +993,45 @@ if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fixContras
       el.querySelector('[data-m]').textContent=pad(m);
       el.querySelector('[data-s]').textContent=pad(s);
     });
-    if(left>0) requestAnimationFrame(()=>setTimeout(tick,1000));
   }
-  tick();
+
+  function tick(){
+    render();
+    if(started && dl-Date.now()>0) setTimeout(tick,1000);
+  }
+
+  function start(){
+    if(started) return;
+    dl=Date.now()+24*3600*1000;
+    try{ localStorage.setItem(KEY,String(dl)); }catch(e){}
+    started=true;
+    if(!ticking){ ticking=true; tick(); }
+  }
+
+  render();
+  if(started){ ticking=true; tick(); }
+
+  // ★ボタンが画面に入ったら開始する（Observer＋スクロール判定の二重）
+  function seen(){
+    for(const el of els){
+      const r=el.getBoundingClientRect();
+      if(r.top < window.innerHeight * 0.9 && r.bottom > 0) return true;
+    }
+    return false;
+  }
+  function check(){
+    if(started) { window.removeEventListener('scroll', check); return; }
+    if(seen()){ start(); window.removeEventListener('scroll', check); }
+  }
+  window.addEventListener('scroll', check, {passive:true});
+  window.addEventListener('resize', check, {passive:true});
+  setTimeout(check, 300);
+  try{
+    const io2=new IntersectionObserver((es)=>{
+      es.forEach(e=>{ if(e.isIntersecting){ start(); io2.disconnect(); } });
+    },{threshold:.4});
+    els.forEach(el=>io2.observe(el));
+  }catch(e){}
 })();
 
 // 4) スクロールで浮かび上がる
