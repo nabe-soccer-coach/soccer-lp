@@ -4,6 +4,46 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     ★★計測。★window.__GA_ID に GA4 の測定ID（G-から始まる）を入れると動きだす。
+     ★空のままなら外部へ何も送らない（ページの動作は変わらない）
+     ★★診断サイト・ジニLPとは必ず別のIDにする
+     ============================================================ -->
+<script>
+  window.__GA_ID = "";   /* ★ここにこのLP専用のGA4測定IDを入れる */
+
+  window.__events = [];
+  (function(){
+    var id = window.__GA_ID;
+    if (id){
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag("js", new Date());
+      gtag("config", id);
+      var sc = document.createElement("script");
+      sc.async = true;
+      sc.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+      document.head.appendChild(sc);
+    }
+    /* ★同じ出来事は「1人1回」だけ送る。★リロードしても後日来ても2回目は送らない */
+    var SENT_KEY = "soccer-lp-sent";
+    var sent = {};
+    try { sent = JSON.parse(localStorage.getItem(SENT_KEY) || "{}") || {}; } catch (e) { sent = {}; }
+    /* ★テスト用。?track_reset=1 を付けて開くと、この端末の記録を消す */
+    if (location.search.indexOf("track_reset=1") >= 0){
+      sent = {};
+      try { localStorage.removeItem(SENT_KEY); localStorage.removeItem("soccer_lp_deadline"); } catch (e) {}
+    }
+    window.track = function(name, params){
+      if (sent[name]) return;
+      sent[name] = 1;
+      try { localStorage.setItem(SENT_KEY, JSON.stringify(sent)); } catch (e) {}
+      window.__events.push({ name: name, t: Math.round(performance.now() / 1000) });
+      if (window.gtag) gtag("event", name, params || {});
+    };
+  })();
+</script>
 <style>
 /* ============================================================
    世界観：夜明け前のグラウンド → 朝 → 昼
@@ -905,6 +945,47 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </div>
 
 <script>
+// 5) 計測（★1人1回だけ送る）
+(function(){
+  if(!window.track) return;
+  track("lp_open");
+
+  // ★読了率＝到達したセクションの割合で刻む
+  const secs=[...document.querySelectorAll('section')];
+  const marks=[25,50,75,90];
+  const done={};
+  function depth(){
+    let last=0;
+    secs.forEach((s,i)=>{ if(s.getBoundingClientRect().top < window.innerHeight*0.8) last=i; });
+    const pct=Math.round((last+1)/secs.length*100);
+    marks.forEach(m=>{ if(pct>=m && !done[m]){ done[m]=1; track("read_"+m); } });
+  }
+  window.addEventListener('scroll', depth, {passive:true});
+  setTimeout(depth, 500);
+
+  // ★オファーに到達（＝カウントダウン開始）
+  const timer=document.querySelector('[data-timer]');
+  if(timer){
+    const io3=new IntersectionObserver(es=>{es.forEach(e=>{ if(e.isIntersecting){ track("offer_reach"); io3.disconnect(); }});},{threshold:.4});
+    io3.observe(timer);
+    window.addEventListener('scroll', function once(){
+      const r=timer.getBoundingClientRect();
+      if(r.top < window.innerHeight*0.9 && r.bottom > 0){ track("offer_reach"); window.removeEventListener('scroll', once); }
+    }, {passive:true});
+  }
+
+  // ★申込ボタンのタップ
+  document.querySelectorAll('.cta a').forEach((a,i)=>{
+    a.addEventListener('click', ()=>{ track("cta_tap", {position: i===0 ? "before_gift" : "after_gift"}); });
+  });
+
+  // ★特典のタップ（★どれが取られたか個別に分かる）
+  document.querySelectorAll('.gift-l a').forEach((a,i)=>{
+    const name=(a.querySelector('.gift-name')||{}).textContent || "";
+    a.addEventListener('click', ()=>{ track("gift_tap_"+(i+1), {gift: name}); });
+  });
+})();
+
 // 1) 行が版面に収まらなければ、その行だけ級数を下げる（実測・保険）
 function fitLines(){
   document.querySelectorAll('.ph').forEach(el=>{
