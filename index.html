@@ -30,7 +30,7 @@
   --k-body:hsl(var(--h) 18% 26%);
   --blue:hsl(var(--h) 52% 44%);
   --blue-lit:hsl(var(--h) 62% 68%);
-  --line:22.2em;
+  --line:min(88vw, 27rem);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -52,7 +52,7 @@ p{text-shadow:0 1px 3px hsl(var(--h) 40% 6% / .55), 0 0 1px hsl(var(--h) 40% 6% 
 
 
 @supports not (text-wrap:nowrap){.ph{white-space:nowrap}}
-.ph{font-size:min(1em, calc(var(--line) / (var(--n,20) * .535)))}
+.ph{font-size:min(1em, calc(var(--line) / (var(--n,20) * .55)))}
 .gap{margin-top:.85em}
 .rise{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease}
 .rise.on{opacity:1;transform:none}
@@ -181,6 +181,18 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 
 .cta{padding:2vh 6vw 15vh;background:hsl(var(--h) 24% 96%)}
 .cta--inline{padding:4vh 6vw 6vh}
+/* 24時間のカウントダウン */
+.timer{width:100%;max-width:22em;margin:0 auto 1.1em;text-align:center;
+  background:#fff;border:1px solid hsl(0 62% 52% / .28);border-radius:.7em;
+  padding:.95em 1em;box-shadow:0 2px 12px hsl(var(--h) 30% 20% / .07)}
+.timer-l{display:block;font-family:"Noto Sans JP",sans-serif;font-weight:700;
+  font-size:.76rem;letter-spacing:.06em;color:hsl(0 55% 45%);margin-bottom:.35em}
+.timer-v{display:block;font-family:"Noto Sans JP",sans-serif;font-weight:900;
+  font-size:clamp(1.25rem,5.6vw,1.7rem);letter-spacing:.02em;color:hsl(var(--h) 40% 12%);
+  font-variant-numeric:tabular-nums}
+.timer-v b{font-weight:900;color:hsl(0 62% 46%);font-size:1.16em}
+.timer.is-over .timer-l{color:hsl(var(--h) 14% 45%)}
+.timer.is-over .timer-v{color:hsl(var(--h) 14% 45%);font-size:clamp(1rem,4.2vw,1.2rem)}
 .cta a{display:block;width:100%;max-width:22em;text-align:center;text-decoration:none;
   background:var(--blue);color:#fff;font-family:"Noto Sans JP",sans-serif;font-weight:900;
   font-size:clamp(1rem,4.3vw,1.2rem);letter-spacing:.06em;padding:1.15em 1em;border-radius:999px;
@@ -190,7 +202,8 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 
 @media (min-width:768px){
   section{padding:15vh 8vw}
-  .read{font-size:1.08rem}
+  .read{font-size:1.18rem}
+  :root{--line:min(72vw, 34rem)}
   .art svg{width:min(46vw,560px)}
 }
 @media (prefers-reduced-motion:reduce){ .rise{opacity:1;transform:none;transition:none} }
@@ -205,9 +218,9 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 34% 7.1%),hsl(214 34% 7.2%))">
   <div class="art" style="background-image:url(images/bench.jpg)"></div>
-  <p class="rise"><span class="ph" style="--n:5.0">土曜の朝。</span><span class="ph" style="--n:7.0">スタンドから、</span><span class="ph" style="--n:19.0">ベンチの端に座っているお子様が見える。</span><span class="ph" style="--n:9.0">ビブスを着たまま、</span><span class="ph" style="--n:15.0">ずっとピッチのほうを見ている。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:7.0">前半が終わる。</span><span class="ph" style="--n:14.5">ハーフタイムに2人が呼ばれて、</span><span class="ph" style="--n:10.0">ピッチに入っていく。</span><span class="ph" style="--n:18.0">後半が始まり、20分が過ぎたところで、</span><span class="ph" style="--n:9.5">また1人が呼ばれる。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:4.0">そして、</span><span class="ph" style="--n:19.0">お子様は最後までピッチに立つことなく、</span><span class="ph" style="--n:8.0">試合終了と同時に</span><span class="ph" style="--n:18.0">「ピーピーッピー」と審判の笛が鳴る。</span></p>
+  <p class="rise"><span class="ph" style="--n:12.0">土曜の朝。スタンドから、</span><span class="ph" style="--n:19.0">ベンチの端に座っているお子様が見える。</span><span class="ph" style="--n:9.0">ビブスを着たまま、</span><span class="ph" style="--n:15.0">ずっとピッチのほうを見ている。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:21.5">前半が終わる。ハーフタイムに2人が呼ばれて、</span><span class="ph" style="--n:10.0">ピッチに入っていく。</span><span class="ph" style="--n:18.0">後半が始まり、20分が過ぎたところで、</span><span class="ph" style="--n:9.5">また1人が呼ばれる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:23.0">そして、お子様は最後までピッチに立つことなく、</span><span class="ph" style="--n:8.0">試合終了と同時に</span><span class="ph" style="--n:18.0">「ピーピーッピー」と審判の笛が鳴る。</span></p>
 </section>
 
 <section class="pause" style="background:linear-gradient(180deg,hsl(214 34% 7.2%),hsl(214 34% 7.3%))">
@@ -283,7 +296,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 33% 8.3%),hsl(214 33% 8.4%))">
   <div class="art" style="background-image:url(images/coach_shout.jpg)"></div>
-  <p class="rise"><span class="ph" style="--n:4.0">でも今、</span><span class="ph" style="--n:18.0">YouTubeやSNSに溢れている技術動画は、</span><span class="ph" style="--n:17.0">そこから遠ざけるものになっている。</span></p>
+  <p class="rise"><span class="ph" style="--n:22.0">でも今、YouTubeやSNSに溢れている技術動画は、</span><span class="ph" style="--n:17.0">そこから遠ざけるものになっている。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:12.0">なぜなら、教えているのは</span><span class="ph" style="--n:20.0">「こういう時は、こうやれ」だけだからだ。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:17.0">相手が変わり、ポジションが変わり、</span><span class="ph" style="--n:21.0">監督が代われば、監督が求めるものも変わる。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:12.0">覚えた動きが出せるのは、</span><span class="ph" style="--n:17.0">まったく同じ場面が来たときだけだ。</span><span class="ph" style="--n:15.0">そして同じ場面は二度と来ない。</span></p>
@@ -296,7 +309,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 33% 8.5%),hsl(214 33% 8.6%))">
   <p class="rise"><span class="ph" style="--n:16.0">教えている人たちが見ているのは、</span><span class="ph" style="--n:18.0">今日できるようになるかどうかだけだ。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:20.0">半年後に子どもが試合に出ているかどうか。</span><span class="ph" style="--n:7.0">そんなことは、</span><span class="ph" style="--n:10.0">一切気にしていない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:20.0">半年後に子どもが試合に出ているかどうか。</span><span class="ph" style="--n:17.0">そんなことは、一切気にしていない。</span></p>
 </section>
 
 <section class="strike" style="background:linear-gradient(180deg,hsl(214 33% 8.6%),hsl(214 32% 8.7%))">
@@ -322,7 +335,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </section>
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 32% 9.0%),hsl(214 32% 9.1%))">
-  <p class="rise"><span class="ph" style="--n:7.0">能力と技術が、</span><span class="ph" style="--n:15.0">先に身につきすぎていたからだ。</span></p>
+  <p class="rise"><span class="ph" style="--n:22.0">能力と技術が、先に身につきすぎていたからだ。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:15.0">用意ドンで圧勝できる足の速さ。</span><span class="ph" style="--n:15.0">五分五分のボールに体を当てれば</span><span class="ph" style="--n:9.0">奪えるフィジカル。</span><span class="ph" style="--n:17.0">少しミスをしてもカバーできる技術。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:17.0">考えなくても、勝ててしまっていた。</span></p>
 </section>
@@ -369,7 +382,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 <section class="read" style="background:linear-gradient(180deg,hsl(214 31% 9.8%),hsl(214 31% 9.9%))">
   <p class="rise"><span class="ph" style="--n:19.0">来週も、その次の週も、同じ土曜が来る。</span><span class="ph" style="--n:20.0">スタメンに名前がないまま、季節が変わる。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:12.0">あんなに好きだったのに、</span><span class="ph" style="--n:13.0">練習に行く準備が遅くなる。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:7.0">帰ってきても、</span><span class="ph" style="--n:15.0">もうボールを持って外に出ない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:22.0">帰ってきても、もうボールを持って外に出ない。</span></p>
 </section>
 
 <section class="pause" style="background:linear-gradient(180deg,hsl(214 31% 9.9%),hsl(214 31% 10.0%))">
@@ -380,7 +393,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
   <div class="art" style="background-image:url(images/goal.jpg)"></div>
   <p class="rise"><span class="ph" style="--n:7.0">半年後の土曜。</span><span class="ph" style="--n:18.0">去年の大会で負けた相手との、公式戦。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:20.0">0対0のまま、残り時間が少なくなっていく。</span><span class="ph" style="--n:15.0">あなたはスタンドから見ている。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:15.0">ゴール前に走り込んだお子様が、</span><span class="ph" style="--n:6.0">最後の一歩で</span><span class="ph" style="--n:18.0">スライディングしながら右足を伸ばす。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:15.0">ゴール前に走り込んだお子様が、</span><span class="ph" style="--n:24.0">最後の一歩でスライディングしながら右足を伸ばす。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:15.0">スパイクの先がボールに触れて、</span><span class="ph" style="--n:18.0">ボールがゴールネットの内側で跳ねる。</span></p>
 </section>
 
@@ -410,7 +423,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
   <div class="art" style="background-image:url(images/bike_dawn.jpg)"></div>
   <p class="rise"><span class="ph" style="--n:15.0">それでも、うまくなりたかった。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:7.5">朝5時に起きて、</span><span class="ph" style="--n:19.0">誰もいないグラウンドでボールを蹴った。</span><span class="ph" style="--n:8.0">片道40分の道を、</span><span class="ph" style="--n:14.0">自転車で20分に縮めて通った。</span><span class="ph" style="--n:10.0">全員が帰ったあとも、</span><span class="ph" style="--n:14.0">最後の一人になるまで残った。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:16.0">リフティングは、誰よりも続いた。</span><span class="ph" style="--n:7.0">足元の技術も、</span><span class="ph" style="--n:15.0">チームの中では上のほうだった。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:16.0">リフティングは、誰よりも続いた。</span><span class="ph" style="--n:22.0">足元の技術も、チームの中では上のほうだった。</span></p>
 </section>
 
 <section class="pit" style="background:linear-gradient(180deg,hsl(214 31% 10.5%),hsl(214 31% 10.6%))">
@@ -424,7 +437,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </section>
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 31% 10.7%),hsl(214 31% 10.7%))">
-  <p class="rise"><span class="ph" style="--n:5.0">そのころ、</span><span class="ph" style="--n:18.0">親は「自主練しろ」とよく言っていた。</span></p>
+  <p class="rise"><span class="ph" style="--n:23.0">そのころ、親は「自主練しろ」とよく言っていた。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:15.0">でも、途中から言わなくなった。</span><span class="ph" style="--n:11.0">代わりに言われたのが、</span><span class="ph" style="--n:12.0">「楽しんでこい」だった。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:19.5">そして、往復3時間の送り迎えが始まった。</span><span class="ph" style="--n:8.0">地方から、毎週。</span></p>
 </section>
@@ -498,7 +511,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </section>
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 29% 11.9%),hsl(214 29% 12.0%))">
-  <p class="rise"><span class="ph" style="--n:8.0">それが半年続く。</span><span class="ph" style="--n:4.5">1年続く。</span></p>
+  <p class="rise"><span class="ph" style="--n:12.5">それが半年続く。1年続く。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:9.0">技術は増えている。</span><span class="ph" style="--n:12.0">去年できなかった動きが、</span><span class="ph" style="--n:12.0">できるようになっている。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:13.0">でも、出番だけが増えない。</span></p>
 </section>
@@ -517,13 +530,13 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 <section class="read" style="background:linear-gradient(180deg,hsl(214 29% 12.1%),hsl(214 29% 12.2%))">
   <div class="art" style="background-image:url(images/empty_saturday.jpg)"></div>
   <p class="rise"><span class="ph" style="--n:15.0">やめた次の週から、週末が空く。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:20.0">車に積みっぱなしだった折りたたみ椅子を、</span><span class="ph" style="--n:5.0">片付ける。</span><span class="ph" style="--n:15.5">5時に起きて作っていたお弁当を、</span><span class="ph" style="--n:7.0">作らなくなる。</span><span class="ph" style="--n:20.0">泥だらけのソックスを、もう洗わなくなる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:20.0">車に積みっぱなしだった折りたたみ椅子を、</span><span class="ph" style="--n:20.5">片付ける。5時に起きて作っていたお弁当を、</span><span class="ph" style="--n:7.0">作らなくなる。</span><span class="ph" style="--n:20.0">泥だらけのソックスを、もう洗わなくなる。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:18.0">ベランダに干していたユニフォームが、</span><span class="ph" style="--n:5.0">なくなる。</span></p>
 </section>
 
 <section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 29% 12.2%),hsl(214 29% 12.3%))">
   <div class="art" style="background-image:url(images/stand.jpg)"></div>
-  <p class="rise"><span class="ph" style="--n:4.0">そして、</span><span class="ph" style="--n:20.0">グラウンドでボールを追いかけている姿を、</span><span class="ph" style="--n:10.0">もう見られなくなる。</span></p>
+  <p class="rise"><span class="ph" style="--n:24.0">そして、グラウンドでボールを追いかけている姿を、</span><span class="ph" style="--n:10.0">もう見られなくなる。</span></p>
 </section>
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 29% 12.3%),hsl(214 29% 12.4%))">
@@ -533,7 +546,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 
 <section class="pause" style="background:linear-gradient(180deg,hsl(214 29% 12.4%),hsl(214 29% 12.5%))">
   <div class="art" style="background-image:url(images/mother_watch.jpg)"></div>
-  <p class="rise"><span class="ph" style="--n:12.0">こうなってしまったのは、</span><span class="ph" style="--n:17.0">私がサッカーを知らなかったからだ。</span><span class="ph" style="--n:3.0">私が、</span><span class="ph" style="--n:22.0">ちゃんとサポートしてあげられなかったからだ。</span></p>
+  <p class="rise"><span class="ph" style="--n:12.0">こうなってしまったのは、</span><span class="ph" style="--n:20.0">私がサッカーを知らなかったからだ。私が、</span><span class="ph" style="--n:22.0">ちゃんとサポートしてあげられなかったからだ。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:13.0">そう思う日が、来てしまう。</span></p>
 </section>
 
@@ -559,19 +572,19 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </section>
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 29% 12.8%),hsl(214 29% 12.9%))">
-  <p class="rise"><span class="ph" style="--n:3.0">まず、</span><span class="ph" style="--n:19.0">試合の中で自分で判断できるようになる。</span></p>
+  <p class="rise"><span class="ph" style="--n:22.0">まず、試合の中で自分で判断できるようになる。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:21.0">相手が変わっても、ポジションが変わっても、</span><span class="ph" style="--n:9.0">監督が代わっても、</span><span class="ph" style="--n:13.0">その場で何をすればいいかを</span><span class="ph" style="--n:12.0">自分で決められるからだ。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:18.0">教わった動き通りにしか動けない子は、</span><span class="ph" style="--n:14.0">状況が変わった瞬間に消える。</span><span class="ph" style="--n:9.0">思考力がある子は、</span><span class="ph" style="--n:14.0">変わったあとに合わせ直せる。</span></p>
 </section>
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 29% 12.9%),hsl(214 28% 13.0%))">
   <p class="rise"><span class="ph" style="--n:17.0">次に、ミスがそこで終わらなくなる。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:7.0">失敗したあとに</span><span class="ph" style="--n:19.0">「次はどうするか」を自分で決められる。</span><span class="ph" style="--n:4.0">だから、</span><span class="ph" style="--n:14.0">同じミスを二度繰り返さない。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:7.0">失敗したあとに</span><span class="ph" style="--n:19.0">「次はどうするか」を自分で決められる。</span><span class="ph" style="--n:18.0">だから、同じミスを二度繰り返さない。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:21.0">監督から見れば、一度言えば直る選手になる。</span><span class="ph" style="--n:17.0">一度言えば直る選手は、使いやすい。</span></p>
 </section>
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 28% 13.0%),hsl(214 28% 13.3%))">
-  <p class="rise"><span class="ph" style="--n:4.0">そして、</span><span class="ph" style="--n:18.0">スタメンから外れても戻ってこられる。</span></p>
+  <p class="rise"><span class="ph" style="--n:22.0">そして、スタメンから外れても戻ってこられる。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:19.0">何が足りなかったのかを自分で見つけて、</span><span class="ph" style="--n:12.0">そこだけを直せるからだ。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:11.0">外れたまま終わる子と、</span><span class="ph" style="--n:14.0">外れても戻ってくる子の差は、</span><span class="ph" style="--n:8.0">ここで生まれる。</span></p>
 </section>
@@ -647,7 +660,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </section>
 
 <section class="turn" style="background:linear-gradient(180deg,hsl(214 27% 16.3%),hsl(214 27% 16.6%))">
-  <p class="rise"><span class="ph" style="--n:6.0">だから僕は、</span><span class="ph" style="--n:16.5">今のSNSがどうしても納得できない。</span></p>
+  <p class="rise"><span class="ph" style="--n:22.5">だから僕は、今のSNSがどうしても納得できない。</span></p>
 </section>
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 27% 16.6%),hsl(214 27% 16.8%))">
@@ -657,13 +670,13 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </section>
 
 <section class="strike" style="background:linear-gradient(180deg,hsl(214 27% 16.8%),hsl(214 27% 17.0%))">
-  <p class="rise"><span class="ph" style="--n:6.0">僕は本気で、</span><span class="ph" style="--n:14.0">これが子どものサッカー人生を</span><span class="ph" style="--n:11.0">狂わせると思っている。</span></p>
+  <p class="rise"><span class="ph" style="--n:20.0">僕は本気で、これが子どものサッカー人生を</span><span class="ph" style="--n:11.0">狂わせると思っている。</span></p>
 </section>
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 27% 17.0%),hsl(214 27% 17.3%))">
-  <p class="rise"><span class="ph" style="--n:5.0">僕は親に、</span><span class="ph" style="--n:18.0">たくさんのきっかけを作ってもらった。</span></p>
+  <p class="rise"><span class="ph" style="--n:23.0">僕は親に、たくさんのきっかけを作ってもらった。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:9.0">「自主練しろ」から</span><span class="ph" style="--n:17.0">「楽しんでこい」に変わったことも、</span><span class="ph" style="--n:11.5">往復3時間の送り迎えも、</span><span class="ph" style="--n:11.0">全部がきっかけだった。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:4.0">だから、</span><span class="ph" style="--n:18.0">あのサッカー人生を送ることができた。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:22.0">だから、あのサッカー人生を送ることができた。</span></p>
 </section>
 
 <section class="turn turn--warm" style="background:linear-gradient(180deg,hsl(214 27% 17.3%),hsl(214 27% 17.5%))">
@@ -677,7 +690,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 
 <section class="strike strike--core" style="background:linear-gradient(180deg,hsl(214 27% 17.7%),hsl(214 27% 18.0%))">
   <p class="rise"><span class="ph" style="--n:12.0">お子様のサッカー人生を、</span><span class="ph" style="--n:20.0">いい思い出にするか、悪い思い出にするか。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:4.0">それは、</span><span class="ph" style="--n:18.0">親御さんのきっかけの作り方で変わる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:22.0">それは、親御さんのきっかけの作り方で変わる。</span></p>
 </section>
 
 <section class="read" style="background:linear-gradient(180deg,hsl(214 27% 18.0%),hsl(214 27% 18.2%))">
@@ -706,7 +719,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </section>
 
 <section class="warn" style="background:linear-gradient(180deg,hsl(8 26% 11.3%),hsl(8 26% 10.5%))">
-  <p class="rise"><span class="ph" style="--n:4.0">それは、</span><span class="ph" style="--n:15.0">自己流で進めてしまうことです。</span></p>
+  <p class="rise"><span class="ph" style="--n:19.0">それは、自己流で進めてしまうことです。</span></p>
 </section>
 
 <section class="warn warn--body" style="background:linear-gradient(180deg,hsl(8 26% 10.5%),hsl(8 26% 11.3%))">
@@ -716,13 +729,13 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 <section class="warn warn--body" style="background:linear-gradient(180deg,hsl(8 26% 11.3%),hsl(8 26% 12.2%))">
   <p class="rise"><span class="ph" style="--n:9.0">料理でも同じです。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:18.0">食べてみたら、なんだか美味しくない。</span><span class="ph" style="--n:18.0">本当の原因は「塩が足りない」だった。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:6.0">でも自分では</span><span class="ph" style="--n:18.0">「甘さが足りないんだ」と思い込んで、</span><span class="ph" style="--n:7.0">砂糖を入れる。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:24.0">でも自分では「甘さが足りないんだ」と思い込んで、</span><span class="ph" style="--n:7.0">砂糖を入れる。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:11.0">まだ美味しくならない。</span><span class="ph" style="--n:10.0">さらに砂糖を入れる。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:13.0">改善しているつもりなのに、</span><span class="ph" style="--n:8.0">美味しい料理から</span><span class="ph" style="--n:12.0">どんどん遠ざかっていく。</span></p>
 </section>
 
 <section class="warn" style="background:linear-gradient(180deg,hsl(8 26% 12.2%),hsl(8 26% 13.0%))">
-  <p class="rise"><span class="ph" style="--n:10.0">改善していることと、</span><span class="ph" style="--n:15.0">正しい方向に進んでいることは、</span><span class="ph" style="--n:4.0">別です。</span></p>
+  <p class="rise"><span class="ph" style="--n:10.0">改善していることと、</span><span class="ph" style="--n:19.0">正しい方向に進んでいることは、別です。</span></p>
 </section>
 
 <section class="warn warn--body" style="background:linear-gradient(180deg,hsl(8 26% 13.0%),hsl(190 28% 16.0%))">
@@ -776,7 +789,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </section>
 
 <section class="final final--gate" style="background:linear-gradient(180deg,hsl(214 26% 21.8%),hsl(214 26% 22.0%))">
-  <p class="rise"><span class="ph" style="--n:6.0">そこで今回、</span><span class="ph" style="--n:20.0">普段は有料で行っている個別セッションを、</span><span class="ph" style="--n:19.0">このページを読んでくださった方限定で、</span><span class="ph" style="--n:10.0">無料でご案内します。</span></p>
+  <p class="rise"><span class="ph" style="--n:6.0">そこで今回、</span><span class="ph" style="--n:21.5">普段は9,800円で行っている個別セッションを、</span><span class="ph" style="--n:19.0">このページを読んでくださった方限定で、</span><span class="ph" style="--n:10.0">無料でご案内します。</span></p>
 </section>
 
 <section class="read ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 22.0%) 0%,hsl(214 24% 96%) 16%,hsl(214 24% 96%) 100%)">
@@ -797,11 +810,11 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
   <p class="rise"><span class="ph" style="--n:11.0">ただし、誰でも何人でも</span><span class="ph" style="--n:16.0">ご案内できるわけではありません。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:15.0">一人ひとりのお子さんに合わせて</span><span class="ph" style="--n:14.0">ロードマップを設計するには、</span><span class="ph" style="--n:8.0">時間が必要です。</span></p>
   <p class="rise gap"><span class="ph gap" style="--n:10.0">試合映像も確認する。</span><span class="ph" style="--n:10.0">今の課題も整理する。</span><span class="ph" style="--n:17.0">親御さんの関わり方も一緒に考える。</span></p>
-  <p class="rise gap"><span class="ph gap" style="--n:4.0">だから、</span><span class="ph" style="--n:18.0">一人ひとりと向き合う必要があります。</span></p>
+  <p class="rise gap"><span class="ph gap" style="--n:22.0">だから、一人ひとりと向き合う必要があります。</span></p>
 </section>
 
 <section class="strike ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
-  <p class="rise"><span class="ph" style="--n:7.0">だから今回は、</span><span class="ph" style="--n:14.0">本気で今を変えたい親御さんに</span><span class="ph" style="--n:11.0">限定してご案内します。</span></p>
+  <p class="rise"><span class="ph" style="--n:21.0">だから今回は、本気で今を変えたい親御さんに</span><span class="ph" style="--n:11.0">限定してご案内します。</span></p>
 </section>
 
 <section class="read ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
@@ -819,7 +832,7 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </section>
 
 <section class="final final--gate ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
-  <p class="rise"><span class="ph" style="--n:13.0">この無料個別セッションは、</span><span class="ph" style="--n:19.0">このページを読んでくださった方の中で、</span><span class="ph" style="--n:6.0">24時間以内に</span><span class="ph" style="--n:16.0">お申し込みくださった方限定です。</span></p>
+  <p class="rise"><span class="ph" style="--n:13.0">この無料個別セッションは、</span><span class="ph" style="--n:19.0">このページを読んでくださった方の中で、</span><span class="ph" style="--n:22.0">24時間以内にお申し込みくださった方限定です。</span></p>
 </section>
 
 <section class="final final--gate ink-dark" style="background:linear-gradient(180deg,hsl(214 26% 96.0%),hsl(214 26% 96.0%))">
@@ -827,7 +840,11 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </section>
 
 <section class="cta cta--inline" style="background:hsl(214 24% 96%)">
-  <a href="https://lin.ee/psSgGxOg">無料の個別セッションに申し込む<small>24時間以内のお申し込み限定</small></a>
+  <div class="timer" data-timer>
+    <span class="timer-l">お申し込み受付の残り時間</span>
+    <span class="timer-v"><b data-h>--</b>時間 <b data-m>--</b>分 <b data-s>--</b>秒</span>
+  </div>
+  <a href="https://lin.ee/psSgGxOg">このボタンをタップして、今すぐ無料の個別セッションに申し込む<small>24時間以内のお申し込み限定</small></a>
 </section>
 
 <section class="gift" style="background:hsl(214 24% 96%)">
@@ -855,7 +872,11 @@ section:has(.art)::after{content:"";position:absolute;inset:0;z-index:1;pointer-
 </section>
 
 <section class="cta cta--inline" style="background:hsl(214 24% 96%)">
-  <a href="https://lin.ee/psSgGxOg">無料の個別セッションに申し込む<small>24時間以内のお申し込み限定</small></a>
+  <div class="timer" data-timer>
+    <span class="timer-l">お申し込み受付の残り時間</span>
+    <span class="timer-v"><b data-h>--</b>時間 <b data-m>--</b>分 <b data-s>--</b>秒</span>
+  </div>
+  <a href="https://lin.ee/psSgGxOg">このボタンをタップして、今すぐ無料の個別セッションに申し込む<small>24時間以内のお申し込み限定</small></a>
 </section>
 
 
@@ -870,9 +891,11 @@ function fitLines(){
     const cs = getComputedStyle(sec);
     const avail = sec.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     const w = Math.min(el.parentElement.clientWidth, avail);
+    const base = parseFloat(getComputedStyle(el.parentElement).fontSize) || 16;
     let guard = 0;
     while(el.scrollWidth > w && guard < 14){
       const cur = parseFloat(getComputedStyle(el).fontSize);
+      if(cur <= base * 0.72) break;          // 縮めすぎない
       el.style.fontSize = (cur * 0.97) + 'px';
       guard++;
     }
@@ -915,7 +938,38 @@ function fixContrast(){
 window.addEventListener('load', fixContrast);
 if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fixContrast); }
 
-// 3) スクロールで浮かび上がる
+// 3) 24時間のカウントダウン（★このページに初めて到達した時刻から）
+(function(){
+  const KEY='soccer_lp_deadline';
+  const els=document.querySelectorAll('[data-timer]');
+  if(!els.length) return;
+  let dl=0;
+  try{ dl=parseInt(localStorage.getItem(KEY)||'0',10); }catch(e){}
+  if(!dl || isNaN(dl) || dl - Date.now() > 24*3600*1000){
+    dl=Date.now()+24*3600*1000;
+    try{ localStorage.setItem(KEY,String(dl)); }catch(e){}
+  }
+  function pad(n){ return n<10 ? '0'+n : String(n); }
+  function tick(){
+    const left=dl-Date.now();
+    els.forEach(el=>{
+      if(left<=0){
+        el.classList.add('is-over');
+        el.querySelector('.timer-l').textContent='お申し込み受付';
+        el.querySelector('.timer-v').textContent='受付時間を過ぎています';
+        return;
+      }
+      const h=Math.floor(left/3600000), m=Math.floor(left%3600000/60000), s=Math.floor(left%60000/1000);
+      el.querySelector('[data-h]').textContent=pad(h);
+      el.querySelector('[data-m]').textContent=pad(m);
+      el.querySelector('[data-s]').textContent=pad(s);
+    });
+    if(left>0) requestAnimationFrame(()=>setTimeout(tick,1000));
+  }
+  tick();
+})();
+
+// 4) スクロールで浮かび上がる
 document.querySelectorAll('.rise').forEach(el=>{
   const r=el.getBoundingClientRect();
   if(r.top < window.innerHeight) el.classList.add('on');
